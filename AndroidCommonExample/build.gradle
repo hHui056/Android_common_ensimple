@@ -1,0 +1,63 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext {
+        // - build_version
+        androidCompileSdkVersion = 25
+        androidMinSdkVersion = 15
+        androidTargetSdkVersion = 25
+        androidBuildToolsVersion = "26.0.1"
+
+        // - lib_version
+        kotlin_version = '1.1.3-2'
+        rxJavaVersion = '2.1.2'
+        rxAndroidVersion = '2.0.1'
+        retrofitVersion = '2.3.0'
+        gsonVersion = '2.8.1'
+
+        libDependencies = [
+                rxJava           : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+                rxAndroid        : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
+                kotlin           : "org.jetbrains.kotlin:kotlin-stdlib-jre7:${kotlin_version}",
+                retrofit         : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+                retrofitConverter: "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
+                retrofitAdapter  : "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
+                gson             : "com.google.code.gson:gson:${gsonVersion}",
+        ]
+    }
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.3.3'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+apply plugin: 'kotlin'
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+
+repositories {
+    mavenCentral()
+}
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
+}
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
