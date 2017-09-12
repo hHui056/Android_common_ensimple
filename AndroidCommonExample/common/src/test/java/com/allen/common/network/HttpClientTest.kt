@@ -1,9 +1,8 @@
 package com.allen.common.network
 
 import android.os.Environment
+import android.util.Log
 import com.google.gson.annotations.SerializedName
-import io.reactivex.Observer
-import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 import org.junit.Assert
@@ -14,28 +13,23 @@ import java.io.File
  * Created by hHui on 2017/9/9.
  */
 class HttpClientTest {
-
-    // @Test
+    @Test
     fun testGetString() {
-        val url: String = ""
+        val url: String = "http://ota.xjxueche.com/download/ota/e515-app/update_newer.json"
 
-        HttpClient().getString(url).subscribe {
-            object : Observer<String> {
-                override fun onComplete() {
-
-                }
-
+        HttpClient().getString(url).subscribeOn(Schedulers.newThread()).subscribe {
+            object : DisposableObserver<String>() {
                 override fun onError(e: Throwable) {
-
-                }
-
-                override fun onSubscribe(d: Disposable) {
-
                 }
 
                 override fun onNext(t: String) {
+                    Log.v("test", t)
 
                 }
+
+                override fun onComplete() {
+                }
+
 
             }
         }
@@ -43,24 +37,20 @@ class HttpClientTest {
 
     data class Person(val name: String, val age: Int)
 
-    // @Test
+    //  @Test
     fun testGetJson() {
         val url: String = ""
-        HttpClient().getJson(url, Person::class.java).subscribe {
-            object : Observer<Person> {
+        HttpClient().getJson(url, Person::class.java).subscribeOn(Schedulers.newThread()).subscribe {
+            object : DisposableObserver<Person>() {
+                override fun onComplete() {
+                }
+
                 override fun onNext(t: Person) {
+
 
                 }
 
                 override fun onError(e: Throwable) {
-
-                }
-
-                override fun onComplete() {
-
-                }
-
-                override fun onSubscribe(d: Disposable) {
 
                 }
 
@@ -124,7 +114,7 @@ class HttpClientTest {
     data class SignResult(val studentId: String, val bookedNo: String, val status: String, val studentName: String,
                           val bookDateBeg: String, val bookDateEnd: String)
 
-    @Test
+    // @Test
     fun testPostJson() {
         val url = "http://jx.xjxueche.com/ecs-boot/mobile/autentication/signIn"
 
@@ -141,7 +131,8 @@ class HttpClientTest {
 
                         override fun onNext(t: SignResponseBody) {
                             Assert.assertNotNull(t)
-                            Assert.assertEquals("0", t.statusCode)
+                            Assert.assertEquals("200", t.statusCode)
+                            Log.v("test", t.toString())
                         }
 
                     }

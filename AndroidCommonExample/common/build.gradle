@@ -36,4 +36,5 @@ dependencies {
     compile libDependencies.gson
     compile libDependencies.retrofitConverter
     compile libDependencies.retrofitAdapter
+    compile libDependencies.fresco
 }

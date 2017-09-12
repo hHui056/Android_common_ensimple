@@ -18,11 +18,9 @@ class MainActivity : Activity() {
 
         btn_rxbus.setOnClickListener {
             RxBus.default.post(TestEventType("HelloWrold"))
-
         }
 
         RxBus.default.register(this, TestEventType::class.java).subscribe {
-
             Logger.dft().d(TAG, it.data)
         }
     }

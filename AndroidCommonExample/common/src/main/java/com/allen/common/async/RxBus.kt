@@ -26,7 +26,6 @@ class RxBus private constructor() {
     private val bus: Subject<Any> by lazy {
         PublishSubject.create<Any>().toSerialized()
     }
-    //<token, <type, disposable>>
     private val disposables: MutableMap<Any, MutableMap<Any, Disposable>> = mutableMapOf()
 
     /**
