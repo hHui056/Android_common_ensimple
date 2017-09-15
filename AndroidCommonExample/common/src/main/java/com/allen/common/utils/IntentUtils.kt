@@ -189,10 +189,11 @@ object IntentUtils {
 
      * @return intent
      */
-    @JvmStatic fun getShutdownIntent(): Intent {
+    val ShutdownIntent: Intent by lazy {
         val intent = Intent(Intent.ACTION_SHUTDOWN)
-        return intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
     }
+
 
     /**
      * 获取跳至拨号界面意图

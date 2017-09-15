@@ -28,17 +28,16 @@ object BarUtils {
     private val TAG_COLOR = "TAG_COLOR"
     private val TAG_ALPHA = "TAG_ALPHA"
     private val TAG_OFFSET = -123
-
-
     /**
-     * 获取状态栏高度(px)
+     * 状态栏高度(px)
 
      * @return 状态栏高度px
      */
-    fun getStatusBarHeight(): Int {
+    val StatusBarHeight: Int by lazy {
         val resources = Utils.getApp().resources
         val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
-        return resources.getDimensionPixelSize(resourceId)
+        resources.getDimensionPixelSize(resourceId)
+
     }
 
     /**
@@ -51,7 +50,7 @@ object BarUtils {
         if (haveSetOffset != null && (haveSetOffset as Boolean)) return
         val layoutParams = view.getLayoutParams() as ViewGroup.MarginLayoutParams
         layoutParams.setMargins(layoutParams.leftMargin,
-                layoutParams.topMargin + getStatusBarHeight(),
+                layoutParams.topMargin + StatusBarHeight,
                 layoutParams.rightMargin,
                 layoutParams.bottomMargin)
         view.setTag(TAG_OFFSET, true)
@@ -67,7 +66,7 @@ object BarUtils {
         if (haveSetOffset == null || !(haveSetOffset as Boolean)) return
         val layoutParams = view.getLayoutParams() as ViewGroup.MarginLayoutParams
         layoutParams.setMargins(layoutParams.leftMargin,
-                layoutParams.topMargin - getStatusBarHeight(),
+                layoutParams.topMargin - StatusBarHeight,
                 layoutParams.rightMargin,
                 layoutParams.bottomMargin)
         view.setTag(TAG_OFFSET, false)
@@ -186,7 +185,7 @@ object BarUtils {
         transparentStatusBar(fakeStatusBar.getContext() as Activity)
         val layoutParams = fakeStatusBar.getLayoutParams()
         layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT
-        layoutParams.height = BarUtils.getStatusBarHeight()
+        layoutParams.height = BarUtils.StatusBarHeight
         fakeStatusBar.setBackgroundColor(getStatusBarColor(color, alpha))
     }
 
@@ -213,7 +212,7 @@ object BarUtils {
         transparentStatusBar(fakeStatusBar.getContext() as Activity)
         val layoutParams = fakeStatusBar.getLayoutParams()
         layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT
-        layoutParams.height = BarUtils.getStatusBarHeight()
+        layoutParams.height = BarUtils.StatusBarHeight
         fakeStatusBar.setBackgroundColor(Color.argb(alpha, 0, 0, 0))
     }
 
@@ -399,7 +398,7 @@ object BarUtils {
     private fun createColorStatusBarView(context: Context, color: Int, alpha: Int): View {
         val statusBarView = View(context)
         statusBarView.setLayoutParams(LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, getStatusBarHeight()))
+                ViewGroup.LayoutParams.MATCH_PARENT, StatusBarHeight))
         statusBarView.setBackgroundColor(getStatusBarColor(color, alpha))
         statusBarView.setTag(TAG_COLOR)
         return statusBarView
@@ -411,7 +410,7 @@ object BarUtils {
     private fun createAlphaStatusBarView(context: Context, alpha: Int): View {
         val statusBarView = View(context)
         statusBarView.setLayoutParams(LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, getStatusBarHeight()))
+                ViewGroup.LayoutParams.MATCH_PARENT, StatusBarHeight))
         statusBarView.setBackgroundColor(Color.argb(alpha, 0, 0, 0))
         statusBarView.setTag(TAG_ALPHA)
         return statusBarView
@@ -503,23 +502,24 @@ object BarUtils {
     ///////////////////////////////////////////////////////////////////////////
     // navigation bar
     ///////////////////////////////////////////////////////////////////////////
-
     /**
-     * 获取导航栏高度
+     * 导航栏高度
      *
      * 0代表不存在
 
      * @return 导航栏高度
      */
-    fun getNavBarHeight(): Int {
+    val NavBarHeight: Int by lazy {
+
         val res = Utils.getApp().resources
         val resourceId = res.getIdentifier("navigation_bar_height", "dimen", "android")
         if (resourceId != 0) {
-            return res.getDimensionPixelSize(resourceId)
+            res.getDimensionPixelSize(resourceId)
         } else {
-            return 0
+            0
         }
     }
+
 
     /**
      * 隐藏导航栏
@@ -528,7 +528,7 @@ object BarUtils {
      */
     fun hideNavBar(@NonNull activity: Activity) {
         if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) return
-        if (getNavBarHeight() > 0) {
+        if (NavBarHeight > 0) {
             val decorView = activity.window.decorView
             val uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
             decorView.systemUiVisibility = uiOptions

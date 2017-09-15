@@ -41,7 +41,7 @@ object AppUtils {
      * @param authority 7.0及以上安装需要传入清单文件中的`<provider>`的authorities属性
      * *                  <br></br>参看https://developer.android.com/reference/android/support/v4/content/FileProvider.html
      */
-    @JvmStatic fun installAppByFilePath(filePath: String, authority: String) {
+    @JvmStatic fun installApp(filePath: String, authority: String) {
         installApp(FileUtils.getFileByPath(filePath)!!, authority)
     }
 
@@ -70,7 +70,7 @@ object AppUtils {
      * *
      * @param requestCode 请求值
      */
-    @JvmStatic fun installAppByFilePath(activity: Activity, filePath: String, authority: String, requestCode: Int) {
+    @JvmStatic fun installApp(activity: Activity, filePath: String, authority: String, requestCode: Int) {
         installApp(activity, FileUtils.getFileByPath(filePath)!!, authority, requestCode)
     }
 
@@ -104,7 +104,7 @@ object AppUtils {
         val file = FileUtils.getFileByPath(filePath)
         if (!FileUtils.isFileExists(file)) return false
         val command = "LD_LIBRARY_PATH=/vendor/lib:/system/lib pm install " + filePath
-        val commandResult = ShellUtils.execCmd(command, !isSystemApp(), true)
+        val commandResult = ShellUtils.execCmd(command, !MyAppIsSystem, true)
         return commandResult.successMsg != null && commandResult.successMsg.toLowerCase().contains("success")
     }
 
@@ -146,26 +146,24 @@ object AppUtils {
     @JvmStatic fun uninstallAppSilent(packageName: String, isKeepData: Boolean): Boolean {
         if (isSpace(packageName)) return false
         val command = "LD_LIBRARY_PATH=/vendor/lib:/system/lib pm uninstall " + (if (isKeepData) "-k " else "") + packageName
-        val commandResult = ShellUtils.execCmd(command, !isSystemApp(), true)
+        val commandResult = ShellUtils.execCmd(command, !MyAppIsSystem, true)
         return commandResult.successMsg != null && commandResult.successMsg.toLowerCase().contains("success")
     }
 
-
     /**
-     * 判断App是否有root权限
-
-     * @return `true`: 是<br></br>`false`: 否
+     * 是否有ROOT 权限
      */
-    @JvmStatic fun isAppRoot(): Boolean {
-        val result = ShellUtils.execCmd("echo root", true)
-        if (result.result === 0) {
-            return true
+    var isAppRoot: Boolean = true
+        get() {
+            val result = ShellUtils.execCmd("echo root", true)
+            if (result.result === 0) {
+                return true
+            }
+            if (result.errorMsg != null) {
+                Log.d("AppUtils", "isAppRoot() called" + result.errorMsg)
+            }
+            return false
         }
-        if (result.errorMsg != null) {
-            Log.d("AppUtils", "isAppRoot() called" + result.errorMsg)
-        }
-        return false
-    }
 
     /**
      * 打开App
@@ -204,13 +202,13 @@ object AppUtils {
     }
 
     /**
-     * 获取App包名
-
-     * @return App包名
+     * 包名
      */
-    @JvmStatic fun getAppPackageName(): String {
-        return Utils.getApp().getPackageName()
-    }
+    var MyAppPackageName: String = ""
+        get() {
+            return Utils.getApp().getPackageName()
+        }
+
 
     /**
      * 获取App具体设置
@@ -230,13 +228,12 @@ object AppUtils {
     }
 
     /**
-     * 获取App名称
-
-     * @return App名称
+     * 当前app名称
      */
-    @JvmStatic fun getAppName(): String {
-        return getAppName(Utils.getApp().getPackageName())!!
-    }
+    var MyAppName: String = ""
+        get() {
+            return getAppName(Utils.getApp().getPackageName())!!
+        }
 
     /**
      * 获取App名称
@@ -259,12 +256,10 @@ object AppUtils {
     }
 
     /**
-     * 获取App图标
-
-     * @return App图标
+     * 当前 app 图标
      */
-    @JvmStatic fun getAppIcon(): Drawable {
-        return getAppIcon(Utils.getApp().getPackageName())!!
+    val MyAppIcon: Drawable by lazy {
+        getAppIcon(Utils.getApp().getPackageName())!!
     }
 
     /**
@@ -288,13 +283,12 @@ object AppUtils {
     }
 
     /**
-     * 获取App路径
-
-     * @return App路径
+     * 当前app位置
      */
-    @JvmStatic fun getAppPath(): String {
-        return getAppPath(Utils.getApp().getPackageName())!!
-    }
+    var MyAppPath: String = ""
+        get() {
+            return getAppPath(Utils.getApp().getPackageName())!!
+        }
 
     /**
      * 获取App路径
@@ -317,12 +311,10 @@ object AppUtils {
     }
 
     /**
-     * 获取App版本号
-
-     * @return App版本号
+     * 当前 APP 版本号
      */
-    @JvmStatic fun getAppVersionName(): String {
-        return getAppVersionName(Utils.getApp().getPackageName())!!
+    val MyAppVersionName: String by lazy {
+        getAppVersionName(Utils.getApp().getPackageName())!!
     }
 
     /**
@@ -346,12 +338,10 @@ object AppUtils {
     }
 
     /**
-     * 获取App版本码
-
-     * @return App版本码
+     * 当前 APP 版本码
      */
-    @JvmStatic fun getAppVersionCode(): Int {
-        return getAppVersionCode(Utils.getApp().getPackageName())
+    val MyAppVersionCode: Int by lazy {
+        getAppVersionCode(Utils.getApp().getPackageName())
     }
 
     /**
@@ -375,13 +365,12 @@ object AppUtils {
     }
 
     /**
-     * 判断App是否是系统应用
-
-     * @return `true`: 是<br></br>`false`: 否
+     * 当前应用是否为系统  APP
      */
-    @JvmStatic fun isSystemApp(): Boolean {
-        return isSystemApp(Utils.getApp().getPackageName())
-    }
+    var MyAppIsSystem: Boolean = true
+        get() {
+            return isSystemApp(Utils.getApp().getPackageName())
+        }
 
     /**
      * 判断App是否是系统应用
@@ -406,11 +395,12 @@ object AppUtils {
     /**
      * 判断App是否是Debug版本
 
-     * @return `true`: 是<br></br>`false`: 否
+     *  `true`: 是<br></br>`false`: 否
      */
-    @JvmStatic fun isAppDebug(): Boolean {
-        return isAppDebug(Utils.getApp().getPackageName())
-    }
+    var MyAppIsDebug: Boolean = true
+        get() {
+            return isAppDebug(Utils.getApp().getPackageName())
+        }
 
     /**
      * 判断App是否是Debug版本
@@ -433,13 +423,12 @@ object AppUtils {
     }
 
     /**
-     * 获取App签名
-
-     * @return App签名
+     * 当前APP 签名
      */
-    @JvmStatic fun getAppSignature(): Array<Signature> {
-        return getAppSignature(Utils.getApp().getPackageName())!!
+    val MyAppSignature: Array<Signature> by lazy {
+        getAppSignature(Utils.getApp().getPackageName())!!
     }
+
 
     /**
      * 获取App签名
@@ -463,15 +452,12 @@ object AppUtils {
     }
 
     /**
-     * 获取应用签名的的SHA1值
-     *
-     * 可据此判断高德，百度地图key是否正确
-
-     * @return 应用签名的SHA1字符串, 比如：53:FD:54:DC:19:0F:11:AC:B5:22:9E:F1:1A:68:88:1B:8B:E8:54:42
+     * 获取当前应用签名的的SHA1值
      */
-    @JvmStatic fun getAppSignatureSHA1(): String {
-        return getAppSignatureSHA1(Utils.getApp().getPackageName())!!
-    }
+    var MyAppSignatureSHA1: String = ""
+        get() {
+            return getAppSignatureSHA1(Utils.getApp().getPackageName())!!
+        }
 
     /**
      * 获取应用签名的的SHA1值
@@ -488,21 +474,24 @@ object AppUtils {
     }
 
     /**
-     * 判断App是否处于前台
+     * 当前App是否处于前台
 
      * @return `true`: 是<br></br>`false`: 否
      */
-    @JvmStatic fun isAppForeground(): Boolean {
-        val manager = Utils.getApp().getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-        val info = manager.runningAppProcesses
-        if (info == null || info.size == 0) return false
-        for (aInfo in info) {
-            if (aInfo.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND) {
-                return aInfo.processName == Utils.getApp().getPackageName()
+    var MyAppIsForeground: Boolean = false
+        get() {
+
+            val manager = Utils.getApp().getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+            val info = manager.runningAppProcesses
+            if (info == null || info.size == 0) return false
+            for (aInfo in info) {
+                if (aInfo.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND) {
+                    return aInfo.processName == Utils.getApp().getPackageName()
+                }
             }
+            return false
         }
-        return false
-    }
+
 
     /**
      * 判断App是否处于前台
@@ -575,8 +564,9 @@ object AppUtils {
 
      * @return 当前应用的AppInfo
      */
-    @JvmStatic fun getAppInfo(): AppInfo {
-        return getAppInfo(Utils.getApp().getPackageName())!!
+    val MyAppInfo: AppInfo by lazy {
+
+        getAppInfo(Utils.getApp().getPackageName())!!
     }
 
     /**
@@ -623,7 +613,7 @@ object AppUtils {
     }
 
     /**
-     * 获取所有已安装App信息
+     * 所有已安装App信息
      *
      * [.getBean]（名称，图标，包名，包路径，版本号，版本Code，是否系统应用）
      *
@@ -631,7 +621,8 @@ object AppUtils {
 
      * @return 所有已安装的AppInfo列表
      */
-    @JvmStatic fun getAppsInfo(): List<AppInfo> {
+    val AppsInfo: List<AppInfo> by lazy {
+
         val list = ArrayList<AppInfo>()
         val pm = Utils.getApp().getPackageManager()
         // 获取系统中安装的所有软件信息
@@ -640,7 +631,7 @@ object AppUtils {
             val ai = getBean(pm, pi) ?: continue
             list.add(ai)
         }
-        return list
+        list
     }
 
     /**

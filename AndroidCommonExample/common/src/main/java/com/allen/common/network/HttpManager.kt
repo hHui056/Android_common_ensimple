@@ -53,7 +53,6 @@ object HttpManager {
      * 销毁所有Http服务。
      */
     fun dispose() {
-        TODO("未单元测试")
         retrofitCache.clear()
         managedDisposables.forEach {
             with(it.get()) {

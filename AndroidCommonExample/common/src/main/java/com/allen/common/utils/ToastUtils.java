@@ -30,18 +30,18 @@ import java.lang.ref.WeakReference;
  */
 public final class ToastUtils {
 
-    private static final int     DEFAULT_COLOR = 0xFEFFFFFF;
-    private static final Handler HANDLER       = new Handler(Looper.getMainLooper());
+    private static final int DEFAULT_COLOR = 0xFEFFFFFF;
+    private static final Handler HANDLER = new Handler(Looper.getMainLooper());
 
-    private static Toast               sToast;
+    private static Toast sToast;
     private static WeakReference<View> sViewWeakReference;
-    private static int sLayoutId  = -1;
-    private static int gravity    = Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM;
-    private static int xOffset    = 0;
-    private static int yOffset    = (int) (64 * Utils.getApp().getResources().getDisplayMetrics().density + 0.5);
-    private static int bgColor    = DEFAULT_COLOR;
+    private static int sLayoutId = -1;
+    private static int gravity = Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM;
+    private static int xOffset = 0;
+    private static int yOffset = (int) (64 * Utils.getApp().getResources().getDisplayMetrics().density + 0.5);
+    private static int bgColor = DEFAULT_COLOR;
     private static int bgResource = -1;
-    private static int msgColor   = DEFAULT_COLOR;
+    private static int msgColor = DEFAULT_COLOR;
 
     private ToastUtils() {
         throw new UnsupportedOperationException("u can't instantiate me...");
@@ -164,7 +164,7 @@ public final class ToastUtils {
     }
 
     /**
-     * 安全地显示短时自定义吐司
+     * 安全地显示短时自定义吐司(注：最外层layout不能设置background，否则不能改变 {@link Toast} 的宽高)
      */
     public static View showCustomShort(@LayoutRes final int layoutId) {
         final View view = getView(layoutId);
@@ -173,7 +173,7 @@ public final class ToastUtils {
     }
 
     /**
-     * 安全地显示长时自定义吐司
+     * 安全地显示长时自定义吐司(注：最外层layout不能设置background，否则不能改变 {@link Toast} 的宽高)
      */
     public static View showCustomLong(@LayoutRes final int layoutId) {
         final View view = getView(layoutId);

@@ -16,40 +16,37 @@ import java.util.*
 object Utils {
     private lateinit var sApplication: Application
 
-    @JvmStatic var sTopActivityWeakRef: WeakReference<Activity>? = null
-    @JvmStatic var sActivityList: MutableList<Activity> = LinkedList()
+    var sTopActivityWeakRef: WeakReference<Activity>? = null
+    var sActivityList: MutableList<Activity> = LinkedList()
 
-    private val mCallbacks = object : Application.ActivityLifecycleCallbacks {
-        override fun onActivityCreated(activity: Activity, bundle: Bundle) {
-            sActivityList.add(activity)
-            setTopActivityWeakRef(activity)
+    val mCallbacks = object : Application.ActivityLifecycleCallbacks {
+        override fun onActivityPaused(activity: Activity?) {
         }
 
-        override fun onActivityStarted(activity: Activity) {
-            setTopActivityWeakRef(activity)
+        override fun onActivityResumed(activity: Activity?) {
+            setTopActivityWeakRef(activity!!)
         }
 
-        override fun onActivityResumed(activity: Activity) {
-            setTopActivityWeakRef(activity)
+        override fun onActivityStarted(activity: Activity?) {
+            setTopActivityWeakRef(activity!!)
         }
 
-        override fun onActivityPaused(activity: Activity) {
-
-        }
-
-        override fun onActivityStopped(activity: Activity) {
-
-        }
-
-        override fun onActivitySaveInstanceState(activity: Activity, bundle: Bundle) {
-
-        }
-
-        override fun onActivityDestroyed(activity: Activity) {
+        override fun onActivityDestroyed(activity: Activity?) {
             sActivityList.remove(activity)
         }
-    }
 
+        override fun onActivitySaveInstanceState(activity: Activity?, outState: Bundle?) {
+        }
+
+        override fun onActivityStopped(activity: Activity?) {
+        }
+
+        override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
+            sActivityList.add(activity!!)
+            setTopActivityWeakRef(activity!!)
+        }
+
+    }
 
     /**
      * 初始化工具类
@@ -67,7 +64,7 @@ object Utils {
      * @return Application
      */
     @JvmStatic fun getApp(): Application {
-        if (sApplication != null) return sApplication as Application
+        if (sApplication != null) return sApplication
         throw NullPointerException("u should init first")
     }
 

@@ -430,7 +430,7 @@ class ActivityUtils private constructor() {
         /**
          * 结束所有activity
          */
-        fun finishAllActivities() {
+        @JvmStatic fun finishAllActivities() {
             val activityList = Utils.sActivityList
             for (i in activityList.indices.reversed()) {
                 activityList[i].finish()
