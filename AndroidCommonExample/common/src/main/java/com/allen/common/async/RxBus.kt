@@ -44,7 +44,6 @@ class RxBus private constructor() {
      */
     fun <T : EventType> register(token: Any, msgType: Class<T>): Observable<T> {
         val subscriber = bus.ofType(msgType)
-
         return subscriber.doOnSubscribe {
             if (disposables.containsKey(token)) {
                 disposables[token]?.put(msgType, it)
@@ -68,7 +67,6 @@ class RxBus private constructor() {
             disposables.remove(token)
         }
     }
-
     /**
      * [post]方法的参数类型
      */

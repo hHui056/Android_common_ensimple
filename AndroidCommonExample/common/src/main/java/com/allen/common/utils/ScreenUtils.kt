@@ -32,7 +32,6 @@ class ScreenUtils private constructor() {
          */
         val screenWidth: Int
             get() = Utils.getApp().resources.displayMetrics.widthPixels
-
         /**
          * 获取屏幕的高度（单位：px）
 
@@ -123,6 +122,7 @@ class ScreenUtils private constructor() {
          * 截屏
 
          * @param activity activity
+         * @param isDeleteStatusBar 是否删除状态栏
          * *
          * @return Bitmap
          */
@@ -156,7 +156,6 @@ class ScreenUtils private constructor() {
                 val km = Utils.getApp().getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
                 return km.inKeyguardRestrictedInputMode()
             }
-
         /**
          * 获取进入休眠时长
 

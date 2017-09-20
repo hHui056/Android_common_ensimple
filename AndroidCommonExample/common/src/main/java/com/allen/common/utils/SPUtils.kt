@@ -225,7 +225,7 @@ class SPUtils(spName: String) {
     }
 
     /**
-     * SP中移除该key
+     * SP 中移除该key
 
      * @param key      键
      * *

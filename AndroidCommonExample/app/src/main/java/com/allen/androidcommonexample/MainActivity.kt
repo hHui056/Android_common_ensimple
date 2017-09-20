@@ -5,7 +5,10 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.Gravity
+import android.view.View
+import com.allen.androidcommonexample.activity.AnimatorActivity
 import com.allen.androidcommonexample.activity.SecondActivity
+import com.allen.androidcommonexample.activity.SocketActivity
 import com.allen.androidcommonexample.bean.TestEventType
 import com.allen.androidcommonexample.bean.TestEventTypeOne
 import com.allen.common.async.RxBus
@@ -17,7 +20,15 @@ import kotlinx.android.synthetic.main.activity_main.*
 /**
  * @author hHui
  */
-class MainActivity : Activity() {
+class MainActivity : Activity(), View.OnClickListener {
+
+    override fun onClick(v: View?) {
+        when (v) {
+            btn_to_second -> jumpToOtherActivity(SecondActivity())
+            btn_to_animator -> jumpToOtherActivity(AnimatorActivity())
+            btn_to_socket -> jumpToOtherActivity(SocketActivity())
+        }
+    }
 
     val TAG = "MainActivity"
 
@@ -28,7 +39,7 @@ class MainActivity : Activity() {
         RxBus.default.register(this, RxBus.EventType::class.java).observeOn(AndroidSchedulers.mainThread()).subscribe {
             if (it is TestEventType) {
                 Logger.dft().d(TAG, it.data)
-                ToastUtils.setMsgColor(Color.RED)
+                ToastUtils.setMessageColor(Color.RED)
                 ToastUtils.setGravity(Gravity.CENTER, 0, 0)
                 ToastUtils.showCustomShort(R.layout.test_layout)
             } else if (it is TestEventTypeOne) {
@@ -36,8 +47,12 @@ class MainActivity : Activity() {
             }
         }
 
-        btn_to_second.setOnClickListener {
-            startActivity(Intent(this, SecondActivity::class.java))
-        }
+        btn_to_second.setOnClickListener(this)
+        btn_to_animator.setOnClickListener(this)
+        btn_to_socket.setOnClickListener(this)
+    }
+
+    fun jumpToOtherActivity(activity: Activity) {
+        startActivity(Intent(this, activity::class.java))
     }
 }

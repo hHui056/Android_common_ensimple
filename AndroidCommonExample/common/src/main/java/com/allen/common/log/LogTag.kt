@@ -5,4 +5,5 @@ package com.allen.common.log
  */
 object LogTag {
     const val Utils = "Utils"
+    const val TCP = "Tcp"
 }

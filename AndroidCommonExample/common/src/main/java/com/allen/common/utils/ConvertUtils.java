@@ -28,7 +28,7 @@ import java.io.UnsupportedEncodingException;
  *     desc  : 转换相关工具类
  * </pre>
  */
-public final class ConvertUtils {
+public class ConvertUtils {
 
     private static final char hexDigits[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
 

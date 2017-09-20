@@ -21,13 +21,12 @@ import java.util.List;
 
 public final class FileIOUtils {
 
+    private static final String LINE_SEP = System.getProperty("line.separator");
+    private static int sBufferSize = 8192;
+
     private FileIOUtils() {
         throw new UnsupportedOperationException("u can't instantiate me...");
     }
-
-    private static final String LINE_SEP = System.getProperty("line.separator");
-
-    private static int sBufferSize = 8192;
 
     /**
      * 将输入流写入文件

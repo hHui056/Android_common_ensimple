@@ -7,7 +7,6 @@ import android.support.annotation.NonNull
 import java.lang.ref.WeakReference
 import java.util.*
 
-
 /**
  * Created by hHui on 2017/9/11.
  *
@@ -17,6 +16,7 @@ object Utils {
     private lateinit var sApplication: Application
 
     var sTopActivityWeakRef: WeakReference<Activity>? = null
+
     var sActivityList: MutableList<Activity> = LinkedList()
 
     val mCallbacks = object : Application.ActivityLifecycleCallbacks {
@@ -57,6 +57,8 @@ object Utils {
         Utils.sApplication = app
         app.registerActivityLifecycleCallbacks(mCallbacks)
     }
+
+
 
     /**
      * 获取Application

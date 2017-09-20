@@ -731,7 +731,6 @@ object EncryptUtils {
     ///////////////////////////////////////////////////////////////////////////
     // 3DES加密相关
     ///////////////////////////////////////////////////////////////////////////
-
     /**
      * 3DES转变
      *
@@ -743,8 +742,6 @@ object EncryptUtils {
      */
     var TripleDES_Transformation = "DESede/ECB/NoPadding"
     private val TripleDES_Algorithm = "DESede"
-
-
     /**
      * 3DES加密后转为Base64编码
 

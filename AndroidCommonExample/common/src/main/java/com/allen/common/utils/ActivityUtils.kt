@@ -9,12 +9,11 @@ import android.os.Bundle
 import android.support.annotation.AnimRes
 
 /**
- * <pre>
- *     author: Blankj
- *     blog  : http://blankj.com
- *     time  : 2016/08/13
- *     desc  : Activity相关工具类
- * </pre>
+ *
+ * Create By hHui on 2017/09/15
+ *
+ * Activity 相关工具类
+ *
  */
 class ActivityUtils private constructor() {
 

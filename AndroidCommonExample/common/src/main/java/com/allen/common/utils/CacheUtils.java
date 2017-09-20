@@ -43,7 +43,7 @@ import java.util.concurrent.atomic.AtomicLong;
  *     desc  : 缓存相关工具类
  * </pre>
  */
-public class CacheUtils {
+public final class CacheUtils {
     public static final int SEC = 1;
     public static final int MIN = 60;
     public static final int HOUR = 3600;

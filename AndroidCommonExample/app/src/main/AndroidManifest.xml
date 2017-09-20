@@ -21,7 +21,15 @@
         </activity>
         <activity
             android:name=".activity.SecondActivity"
-            android:label="SecondActivity"></activity>
+            android:label="SecondActivity" />
+        <activity
+            android:name=".activity.AnimatorActivity"
+            android:label="AnimatorActivity" />
+        <activity
+            android:name=".activity.SocketActivity"
+            android:label="SocketActivity">
+
+        </activity>
     </application>
 
 </manifest>

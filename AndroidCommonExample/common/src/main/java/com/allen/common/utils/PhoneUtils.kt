@@ -69,7 +69,6 @@ class PhoneUtils private constructor() {
 
         /**
          * 获取移动终端类型
-
          * @return 手机制式
          * *
          * *  * [TelephonyManager.PHONE_TYPE_NONE] : 0 手机制式未知
@@ -83,7 +82,6 @@ class PhoneUtils private constructor() {
                 val tm = Utils.getApp().getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
                 return tm?.phoneType ?: -1
             }
-
         /**
          * 判断sim卡是否准备好
 
@@ -399,7 +397,6 @@ class PhoneUtils private constructor() {
             } catch (e: Exception) {
                 e.printStackTrace()
             }
-
         }
     }
 }

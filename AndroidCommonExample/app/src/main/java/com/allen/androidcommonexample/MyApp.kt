@@ -2,8 +2,6 @@ package com.allen.androidcommonexample
 
 import android.app.Application
 import com.allen.common.log.Logger
-import com.allen.common.utils.SPUtils
-import com.allen.common.utils.ScreenUtils
 import com.allen.common.utils.Utils
 
 /**
@@ -21,7 +19,6 @@ class MyApp : Application() {
          * 工具模块
          */
         Utils.init(this)
-        ScreenUtils.isTablet
-        val util =SPUtils.instance
+
     }
 }
