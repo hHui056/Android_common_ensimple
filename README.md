@@ -1,5 +1,5 @@
 # Android_Common_Ensimple
-### 收集了平时自己常用的模块，用Kotlin语法重写了
+### 收集了平时自己常用的模块，用Kotlin语法重写了（代码见common模块）
 - log（包括file和cat）
 
 - http（网络请求封装，包括文件的上传和下载）
