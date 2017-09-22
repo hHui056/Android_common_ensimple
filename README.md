@@ -12,6 +12,6 @@
 
 - 常用图片处理
 
-- util（hex转换，正则表达式校验等）
+- util（hex转换、screen、sp、file、正则表达式校验等等）
 
 - 常用view
