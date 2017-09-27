@@ -80,7 +80,7 @@ public class TcpClient {
     }
 
     /**
-     * 以Observable的方式对外提供TCP数据流
+     * 以Observable的方式对外提供TCP 数据流
      */
     private Observable<byte[]> createTcpConnectObservable() {
         return Observable.create(new ObservableOnSubscribe<byte[]>() {
@@ -89,7 +89,7 @@ public class TcpClient {
                 InputStream in = null;
                 try {
                     socket = new Socket();
-                    //TODO: 4000端口不应该设置读超时，使用心跳机制
+                    //TODO: 4000 端口不应该设置读超时，使用心跳机制
                     socket.setSoTimeout(5 * 1000);
                     socket.connect(new InetSocketAddress(ip, port), 5 * 1000);
 
@@ -152,7 +152,7 @@ public class TcpClient {
     }
 
     public void disconnect() throws IOException {
-        if (disposable==null){
+        if (disposable == null) {
             throw new IllegalStateException("Not connected to the server!");
         }
         if (connectState.get() == ConnectState.Disconnecting) {
@@ -189,7 +189,6 @@ public class TcpClient {
     }
 
     //region 断线重连
-
     enum ConnectState {
         Idle, Connecting, Connected, Disconnecting, Disconnected
     }

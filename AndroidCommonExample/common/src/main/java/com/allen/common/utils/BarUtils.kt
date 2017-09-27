@@ -205,8 +205,7 @@ object BarUtils {
      * *
      * @param alpha         状态栏透明度
      */
-    fun setStatusBarAlpha(@NonNull fakeStatusBar: View,
-                          alpha: Int) {
+    fun setStatusBarAlpha(@NonNull fakeStatusBar: View, alpha: Int) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return
         fakeStatusBar.setVisibility(View.VISIBLE)
         transparentStatusBar(fakeStatusBar.getContext() as Activity)
@@ -397,10 +396,9 @@ object BarUtils {
      */
     private fun createColorStatusBarView(context: Context, color: Int, alpha: Int): View {
         val statusBarView = View(context)
-        statusBarView.setLayoutParams(LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, StatusBarHeight))
+        statusBarView.layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, StatusBarHeight)
         statusBarView.setBackgroundColor(getStatusBarColor(color, alpha))
-        statusBarView.setTag(TAG_COLOR)
+        statusBarView.tag = TAG_COLOR
         return statusBarView
     }
 
@@ -409,10 +407,10 @@ object BarUtils {
      */
     private fun createAlphaStatusBarView(context: Context, alpha: Int): View {
         val statusBarView = View(context)
-        statusBarView.setLayoutParams(LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, StatusBarHeight))
+        statusBarView.layoutParams = LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, StatusBarHeight)
         statusBarView.setBackgroundColor(Color.argb(alpha, 0, 0, 0))
-        statusBarView.setTag(TAG_ALPHA)
+        statusBarView.tag = TAG_ALPHA
         return statusBarView
     }
 

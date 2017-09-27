@@ -264,7 +264,7 @@ class SPUtils(spName: String) {
          * @return [SPUtils]
          */
         val instance: SPUtils
-            get() = getInstance("default_sp_name")
+            get() = getInstance("")
 
         /**
          * 获取SP实例

@@ -13,6 +13,7 @@ class Logger private constructor() {
     }
 
     private lateinit var printer: ILog
+
     private var level: Int = VERBOSE
 
     constructor(type: Type, level: Int, file: File) : this() {
@@ -24,15 +25,12 @@ class Logger private constructor() {
     }
 
     companion object {
-
         const val VERBOSE: Int = 0
         const val DEBUG: Int = 1
         const val INFO: Int = 2
         const val WARN: Int = 3
         const val ERROR: Int = 4
-
         private var logger: AtomicReference<Logger> = AtomicReference()
-
         /**
          * 初始化
          */

@@ -14,10 +14,13 @@ import java.util.concurrent.Executors
 
 class SocketActivity : Activity() {
     val TAG = "SocketActivity"
+
     val IP = "192.168.150.100"
+
     val PORT = 4001
 
     private val singleExecutor: ExecutorService = Executors.newSingleThreadExecutor() // - 单线程执行
+
     private val singleScheduler: Scheduler = Schedulers.from(singleExecutor)
 
     private val tcpClient: TcpClient by lazy {
@@ -29,19 +32,21 @@ class SocketActivity : Activity() {
         setContentView(R.layout.activity_socket)
 
         btn_connect.setOnClickListener {
-            tcpClient.connect().observeOn(singleScheduler).subscribe {
-                Logger.dft().d(TAG, String(it))
+            try {
+                tcpClient.connect().observeOn(singleScheduler).subscribe {
+                    Logger.dft().d(TAG, String(it))
+                }
+            } catch (e: Exception) {
+                Logger.dft().d(TAG, e.message!!)
             }
         }
 
         btn_diconnect.setOnClickListener {
-
             try {
                 tcpClient.disconnect()
             } catch (e: Exception) {
                 ToastUtils.showShortText(e.message!!)
             }
-
         }
     }
 }

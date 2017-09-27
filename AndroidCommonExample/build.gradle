@@ -15,6 +15,7 @@ buildscript {
         retrofitVersion = '2.3.0'
         gsonVersion = '2.8.1'
         frescoVersion = '1.5.0'
+        replugin_version = '2.2.0'
 
         libDependencies = [
                 rxJava           : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
@@ -25,20 +26,24 @@ buildscript {
                 retrofitAdapter  : "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
                 gson             : "com.google.code.gson:gson:${gsonVersion}",
                 fresco           : "com.facebook.fresco:fresco:${frescoVersion}",
+                replugin :"com.qihoo360.replugin:replugin-host-lib:$replugin_version",
         ]
     }
     repositories {
+        mavenLocal()
         jcenter()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.3'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.qihoo360.replugin:replugin-host-gradle:$replugin_version"
     }
 }
 apply plugin: 'kotlin'
 
 allprojects {
     repositories {
+        mavenLocal()
         jcenter()
     }
 }

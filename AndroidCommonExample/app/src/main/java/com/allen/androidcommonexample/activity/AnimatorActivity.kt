@@ -5,9 +5,10 @@ import android.animation.ObjectAnimator
 import android.app.Activity
 import android.os.Bundle
 import android.view.ViewPropertyAnimator
-import android.view.animation.AccelerateInterpolator
+import android.view.animation.BounceInterpolator
 import com.allen.androidcommonexample.R
 import com.allen.common.log.Logger
+import com.allen.common.utils.ScreenUtils
 import kotlinx.android.synthetic.main.activity_animator.*
 
 class AnimatorActivity : Activity() {
@@ -15,11 +16,11 @@ class AnimatorActivity : Activity() {
 
     val animator: ViewPropertyAnimator by lazy {
         img_icon.animate()
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        ScreenUtils.setFullScreen(this)  //设置全屏
         setContentView(R.layout.activity_animator)
 
         animator.setListener(object : Animator.AnimatorListener {
@@ -44,11 +45,10 @@ class AnimatorActivity : Activity() {
                 Logger.dft().d(TAG, "动画开始")
             }
 
-
         })
 
         //  animator1()
-        // animator2()
+        animator2()
         // animator3()
         animator4()
     }
@@ -64,9 +64,9 @@ class AnimatorActivity : Activity() {
     // - 旋转
     fun animator2() {
         animator.duration = 10000
-        animator.rotationBy(90F)  // - 参数为°
-        animator.rotationXBy(90F)
-        animator.rotationYBy(90F)
+        // animator.rotationBy(90F)  // - 参数为°()
+        animator.rotationXBy(180F)
+        // animator.rotationYBy(90F)
     }
 
     // - 缩放
@@ -80,9 +80,11 @@ class AnimatorActivity : Activity() {
      * [ObjectAnimator] 简单使用
      */
     fun animator4() {
-        val objAnimator: ObjectAnimator = ObjectAnimator.ofFloat(my_progress, "progress", 0F, 200F)
-        objAnimator.duration = 10000
-        objAnimator.interpolator = AccelerateInterpolator()
+        val objAnimator: ObjectAnimator = ObjectAnimator.ofFloat(my_progress, "progress", 0F, ScreenUtils.screenHeight.toFloat() - 30)
+        objAnimator.duration = 15000
+        objAnimator.interpolator = BounceInterpolator()  // - 设置速度模型
         objAnimator.start()
     }
+
+
 }

@@ -6,6 +6,7 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
+import android.view.MotionEvent
 import android.view.View
 
 /**
@@ -16,6 +17,7 @@ import android.view.View
  */
 
 class ProgressView : View {
+
     var progress = 0f
         set(value) {
             field = value
@@ -31,8 +33,15 @@ class ProgressView : View {
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         val paint = Paint()
-        paint.color = Color.RED
+        // paint.color = Color.RED
+        // canvas.drawCircle(300f, 300f, progress, paint)
+        paint.color = Color.WHITE
+        canvas.drawCircle(200F, progress, 20F, paint)
+    }
 
-        canvas.drawRect(0f, 0f, this.progress, this.progress, paint)
+    override fun onTouchEvent(event: MotionEvent?): Boolean {
+        return super.onTouchEvent(event)
+
+
     }
 }

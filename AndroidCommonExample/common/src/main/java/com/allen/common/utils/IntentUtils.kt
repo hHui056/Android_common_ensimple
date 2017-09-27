@@ -231,7 +231,6 @@ object IntentUtils {
         return intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
     }
 
-
     /**
      * 获取拍照的意图
 

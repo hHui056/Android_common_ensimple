@@ -1,13 +1,13 @@
 package com.allen.androidcommonexample
 
-import android.app.Application
 import com.allen.common.log.Logger
 import com.allen.common.utils.Utils
+import com.qihoo360.replugin.RePluginApplication
 
 /**
  * Created by hHui on 2017/9/9.
  */
-class MyApp : Application() {
+class MyApp : RePluginApplication() {
 
     override fun onCreate() {
         super.onCreate()

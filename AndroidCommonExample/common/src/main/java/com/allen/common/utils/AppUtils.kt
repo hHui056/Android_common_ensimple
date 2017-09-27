@@ -38,7 +38,7 @@ object AppUtils {
 
      * @param filePath  文件路径
      * *
-     * @param authority 7.0及以上安装需要传入清单文件中的`<provider>`的authorities属性
+     * @param authority 7.0 及以上安装需要传入清单文件中的`<provider>`的authorities属性
      * *                  <br></br>参看https://developer.android.com/reference/android/support/v4/content/FileProvider.html
      */
     @JvmStatic fun installApp(filePath: String, authority: String) {

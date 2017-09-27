@@ -17,6 +17,7 @@ import java.io.File
  * POST: Form、Json、File&Params
  *
  * Created by hHui on 2017/8/3.
+ *
  */
 class HttpClient {
 
@@ -59,6 +60,7 @@ class HttpClient {
         return postMethod.postJson(url, body).map {
             it.string().toModel(typeResponse)
         }.doOnSubscribe { HttpManager.manage(it) }
+
     }
 
     /**

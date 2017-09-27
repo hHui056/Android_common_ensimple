@@ -1,3 +1,4 @@
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
@@ -19,6 +20,7 @@ android {
         }
     }
 }
+apply plugin: 'replugin-host-gradle'
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -29,6 +31,7 @@ dependencies {
     compile project(':common')
     compile libDependencies.kotlin
     compile libDependencies.rxJava
+    compile libDependencies.replugin
 
     repositories {
         mavenCentral()
