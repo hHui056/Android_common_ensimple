@@ -27,12 +27,13 @@
             android:label="SecondActivity" />
         <activity
             android:name=".activity.AnimatorActivity"
-            android:label="AnimatorActivity" />
+            android:label="AnimatorActivity"
+            android:screenOrientation="landscape"></activity>
         <activity
             android:name=".activity.SocketActivity"
-            android:label="SocketActivity">
-
-        </activity>
+            android:label="SocketActivity" />
+        <activity android:name=".activity.ListWithSpinnerActivity" />
+        <activity android:name=".opengl.OpenGLActivity"></activity>
     </application>
 
 </manifest>

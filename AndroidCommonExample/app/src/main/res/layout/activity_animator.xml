@@ -1,36 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/black"
     tools:context="com.allen.androidcommonexample.activity.AnimatorActivity">
-<ImageView
-    android:id="@+id/img_icon"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@mipmap/ic_launcher"
-    app:layout_constraintTop_toTopOf="parent"
-    android:layout_marginTop="8dp"
-    app:layout_constraintBottom_toBottomOf="parent"
-    android:layout_marginBottom="8dp"
-    android:layout_marginRight="8dp"
-    app:layout_constraintRight_toRightOf="parent"
-    android:layout_marginLeft="8dp"
-    app:layout_constraintLeft_toLeftOf="parent" />
 
-    <com.allen.androidcommonexample.view.ProgressView
-        android:id="@+id/my_progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintVertical_bias="0.0" />
-</android.support.constraint.ConstraintLayout>
+
+    <com.allen.androidcommonexample.view.DegreeView
+        android:id="@+id/my_degree"
+        android:layout_width="180dp"
+        android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="100dp" />
+
+</RelativeLayout>

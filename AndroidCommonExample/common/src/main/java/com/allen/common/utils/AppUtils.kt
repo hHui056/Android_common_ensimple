@@ -209,7 +209,6 @@ object AppUtils {
             return Utils.getApp().getPackageName()
         }
 
-
     /**
      * 获取App具体设置
      */

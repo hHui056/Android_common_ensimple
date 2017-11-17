@@ -8,10 +8,12 @@ import android.os.Environment
 import android.view.Gravity
 import android.view.View
 import com.allen.androidcommonexample.activity.AnimatorActivity
+import com.allen.androidcommonexample.activity.ListWithSpinnerActivity
 import com.allen.androidcommonexample.activity.SecondActivity
 import com.allen.androidcommonexample.activity.SocketActivity
 import com.allen.androidcommonexample.bean.TestEventType
 import com.allen.androidcommonexample.bean.TestEventTypeOne
+import com.allen.androidcommonexample.opengl.OpenGLActivity
 import com.allen.common.async.RxBus
 import com.allen.common.log.Logger
 import com.allen.common.utils.ToastUtils
@@ -38,9 +40,10 @@ class MainActivity : Activity(), View.OnClickListener {
             btn_plugin -> {
                 RePlugin.startActivity(this, RePlugin.createIntent("com.allen.plugin1", "com.allen.plugin1.MainActivity"))
             }
-            else -> {
-
+            btn_to_sp -> {
+                jumpToOtherActivity(ListWithSpinnerActivity())
             }
+            btn_opengl -> jumpToOtherActivity(OpenGLActivity())
         }
     }
 
@@ -49,7 +52,6 @@ class MainActivity : Activity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         RxBus.default.register(this, RxBus.EventType::class.java).observeOn(AndroidSchedulers.mainThread()).subscribe {
             if (it is TestEventType) {
                 Logger.dft().d(TAG, it.data)
@@ -66,9 +68,11 @@ class MainActivity : Activity(), View.OnClickListener {
         btn_to_socket.setOnClickListener(this)
         btn_plugin.setOnClickListener(this)
         btn_install_plugin.setOnClickListener(this)
+        btn_to_sp.setOnClickListener(this)
+        btn_opengl.setOnClickListener(this)
     }
 
-    fun jumpToOtherActivity(activity: Activity) {
+    private fun jumpToOtherActivity(activity: Activity) {
         startActivity(Intent(this, activity::class.java))
     }
 

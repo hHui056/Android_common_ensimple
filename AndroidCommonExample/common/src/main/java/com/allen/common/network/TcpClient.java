@@ -278,7 +278,7 @@ public class TcpClient {
                 @Override
                 public ObservableSource<?> apply(@NonNull Throwable throwable) throws Exception {
                     if (throwable instanceof ReconnectException && (maxRetries == Integer.MAX_VALUE || retryCount++ < maxRetries)) {
-                        Logger.dft().d(LogTag.Utils, "连接异常，将在" + retryDelayMillis + "毫秒后重连！原因：" + throwable.toString());
+                      //  Logger.dft().d(LogTag.Utils, "连接异常，将在" + retryDelayMillis + "毫秒后重连！原因：" + throwable.toString());
                         return Observable.timer(retryDelayMillis, TimeUnit.MILLISECONDS);
                     }
                     // Max retries hit. Just pass the error along.

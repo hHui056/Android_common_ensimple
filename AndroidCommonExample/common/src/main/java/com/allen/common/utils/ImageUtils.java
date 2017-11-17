@@ -84,7 +84,7 @@ public final class ImageUtils {
     /**
      * drawable转bitmap
      *
-     * @param drawable drawable对象
+     * @param drawable drawable 对象
      * @return bitmap
      */
     public static Bitmap drawable2Bitmap(final Drawable drawable) {

@@ -3,4 +3,6 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="degressBackground">#092F32</color>
+    <color name="signalColor">#03B7CE</color>
 </resources>

@@ -1,6 +1,7 @@
 package com.allen.androidcommonexample
 
 import com.allen.common.log.Logger
+import com.allen.common.utils.DeviceUtils
 import com.allen.common.utils.Utils
 import com.qihoo360.replugin.RePluginApplication
 
@@ -19,6 +20,8 @@ class MyApp : RePluginApplication() {
          * 工具模块
          */
         Utils.init(this)
+
+        val ss = DeviceUtils.isDeviceRooted
 
     }
 }
