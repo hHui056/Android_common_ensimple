@@ -1,4 +1,4 @@
-package com.allen.androidcommonexample.opengl
+package com.allen.common.opengl
 
 import android.opengl.GLES20
 

@@ -1,4 +1,4 @@
-package com.allen.androidcommonexample.util
+package com.allen.androidcommonexample.test.util
 
 import com.allen.androidcommonexample.bean.TestSignal
 

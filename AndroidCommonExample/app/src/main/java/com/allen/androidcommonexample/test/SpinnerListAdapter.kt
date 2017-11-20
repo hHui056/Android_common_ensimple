@@ -1,4 +1,4 @@
-package com.allen.androidcommonexample.adapter
+package com.allen.androidcommonexample.test
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.allen.androidcommonexample.R
+import com.allen.androidcommonexample.rxbus.TestBean
 import java.util.*
 
 /**

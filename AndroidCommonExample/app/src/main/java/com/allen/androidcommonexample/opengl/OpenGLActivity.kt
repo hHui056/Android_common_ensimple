@@ -22,7 +22,6 @@ class OpenGLActivity : Activity() {
 
     }
 
-
     private fun initGLSurfaceView() {
         glSurfaceView = GLSurfaceView(this@OpenGLActivity)
         val activityManager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager

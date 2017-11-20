@@ -4,10 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/black"
-    tools:context="com.allen.androidcommonexample.activity.AnimatorActivity">
+    tools:context="com.allen.androidcommonexample.animator.AnimatorActivity">
 
 
-    <com.allen.androidcommonexample.view.DegreeView
+    <com.allen.androidcommonexample.test.view.DegreeView
         android:id="@+id/my_degree"
         android:layout_width="180dp"
         android:layout_height="200dp"

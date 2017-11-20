@@ -4,6 +4,7 @@ import android.content.Context
 import android.opengl.GLES20
 import android.opengl.GLSurfaceView
 import com.allen.androidcommonexample.R
+import com.allen.common.opengl.ShaderHelper
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 import java.nio.FloatBuffer
@@ -46,7 +47,7 @@ class AirHockeyRenderer(context: Context) : GLSurfaceView.Renderer {
     var program = 0
 
     init {
-        vertexData = ByteBuffer.allocateDirect(tableVerticesWithTriangles.size * 4) // 分配一块内存区域供OpenGL读取
+        vertexData = ByteBuffer.allocateDirect(tableVerticesWithTriangles.size * 4) // 分配一块内存区域供OpenGL读取避免被回收
                 .order(ByteOrder.nativeOrder()).asFloatBuffer()
         vertexData.put(tableVerticesWithTriangles)
         vertexShaderStr = Utils.readTextFileFromResource(context, R.raw.simple_vertex_shader)

@@ -1,4 +1,4 @@
-package com.allen.androidcommonexample.view
+package com.allen.androidcommonexample.test.view
 
 import android.content.Context
 import android.graphics.*
@@ -7,7 +7,7 @@ import android.view.Surface
 import android.view.TextureView
 import com.allen.androidcommonexample.R
 import com.allen.androidcommonexample.bean.TestSignal
-import com.allen.androidcommonexample.util.SignalInsert
+import com.allen.androidcommonexample.test.util.SignalInsert
 import java.util.concurrent.LinkedBlockingQueue
 
 /**

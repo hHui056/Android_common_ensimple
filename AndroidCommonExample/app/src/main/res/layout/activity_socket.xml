@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.allen.androidcommonexample.activity.SocketActivity">
+    tools:context="com.allen.androidcommonexample.socket.SocketActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -1,11 +1,10 @@
-package com.allen.androidcommonexample.activity
+package com.allen.androidcommonexample.test
 
 import android.app.Activity
 import android.os.Bundle
 
 import com.allen.androidcommonexample.R
-import com.allen.androidcommonexample.adapter.SpinnerListAdapter
-import com.allen.androidcommonexample.adapter.TestBean
+import com.allen.androidcommonexample.rxbus.TestBean
 import kotlinx.android.synthetic.main.activity_list_with_spinner.*
 
 class ListWithSpinnerActivity : Activity() {

@@ -1,4 +1,4 @@
-package com.allen.androidcommonexample.activity
+package com.allen.androidcommonexample.animator
 
 import android.app.Activity
 import android.os.Bundle

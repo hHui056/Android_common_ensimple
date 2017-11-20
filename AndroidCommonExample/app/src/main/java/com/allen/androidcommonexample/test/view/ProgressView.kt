@@ -1,4 +1,4 @@
-package com.allen.androidcommonexample.view
+package com.allen.androidcommonexample.test.view
 
 import android.animation.ObjectAnimator
 import android.content.Context

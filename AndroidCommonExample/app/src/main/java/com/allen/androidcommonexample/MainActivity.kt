@@ -7,10 +7,10 @@ import android.os.Bundle
 import android.os.Environment
 import android.view.Gravity
 import android.view.View
-import com.allen.androidcommonexample.activity.AnimatorActivity
-import com.allen.androidcommonexample.activity.ListWithSpinnerActivity
-import com.allen.androidcommonexample.activity.SecondActivity
-import com.allen.androidcommonexample.activity.SocketActivity
+import com.allen.androidcommonexample.animator.AnimatorActivity
+import com.allen.androidcommonexample.test.ListWithSpinnerActivity
+import com.allen.androidcommonexample.rxbus.SecondActivity
+import com.allen.androidcommonexample.socket.SocketActivity
 import com.allen.androidcommonexample.bean.TestEventType
 import com.allen.androidcommonexample.bean.TestEventTypeOne
 import com.allen.androidcommonexample.opengl.OpenGLActivity

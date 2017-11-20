@@ -1,4 +1,4 @@
-package com.allen.androidcommonexample.adapter
+package com.allen.androidcommonexample.rxbus
 
 /**
  * Created by hHui on 2017/10/27.

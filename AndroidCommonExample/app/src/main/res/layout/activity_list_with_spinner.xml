@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.allen.androidcommonexample.activity.ListWithSpinnerActivity">
+    tools:context="com.allen.androidcommonexample.test.ListWithSpinnerActivity">
 
     <ListView
         android:id="@+id/my_list"

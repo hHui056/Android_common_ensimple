@@ -1,4 +1,4 @@
-package com.allen.androidcommonexample.activity
+package com.allen.androidcommonexample.test.view
 
 import android.content.Context
 import android.support.constraint.ConstraintLayout
