@@ -6,11 +6,12 @@ import com.allen.androidcommonexample.opengl.ShaderHelper
 import com.allen.androidcommonexample.opengl.Utils
 
 open class ShaderProgram(context: Context, vertexShaderResourceId: Int, fragmentShaderResourceId: Int) {
-    // Shader program
+    // Shader program   seven
     protected val program: Int = ShaderHelper.buildProgram(Utils.readTextFileFromResource(context, vertexShaderResourceId),
             Utils.readTextFileFromResource(context, fragmentShaderResourceId))
 
     fun useProgram() {
+
         // Set the current OpenGL shader program to this program.
         glUseProgram(program)
     }
