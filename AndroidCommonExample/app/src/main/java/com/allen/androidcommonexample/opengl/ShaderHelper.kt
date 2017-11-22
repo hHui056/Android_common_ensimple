@@ -1,4 +1,4 @@
-package com.allen.common.opengl
+package com.allen.androidcommonexample.opengl
 
 import android.opengl.GLES20
 
@@ -73,4 +73,13 @@ object ShaderHelper {
         return validateStatus[0] != 0
     }
 
+    @JvmStatic
+    fun buildProgram(vertexShaderSource: String, fragmentShaderSource: String): Int {
+        val program: Int
+        val vertexShader = compileVertexShader(vertexShaderSource)
+        val fragmentShader = compileFragmentShader(fragmentShaderSource)
+
+        program = linkProgram(vertexShader, fragmentShader)
+        return program
+    }
 }

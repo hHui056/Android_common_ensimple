@@ -3,9 +3,9 @@ package com.allen.androidcommonexample.rxbus
 import android.app.Activity
 import android.os.Bundle
 import com.allen.androidcommonexample.R
-import com.allen.androidcommonexample.bean.Player
-import com.allen.androidcommonexample.bean.TestEventType
-import com.allen.androidcommonexample.bean.TestEventTypeOne
+import com.allen.androidcommonexample.test.bean.Player
+import com.allen.androidcommonexample.test.bean.TestEventType
+import com.allen.androidcommonexample.test.bean.TestEventTypeOne
 import com.allen.common.async.RxBus
 import kotlinx.android.synthetic.main.activity_second.*
 

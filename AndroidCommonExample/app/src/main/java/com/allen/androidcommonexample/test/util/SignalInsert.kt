@@ -1,6 +1,6 @@
 package com.allen.androidcommonexample.test.util
 
-import com.allen.androidcommonexample.bean.TestSignal
+import com.allen.androidcommonexample.test.bean.TestSignal
 
 /**
  * Created by hHui on 2017/9/29.

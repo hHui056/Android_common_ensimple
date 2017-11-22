@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Message
 import com.allen.androidcommonexample.R
-import com.allen.androidcommonexample.bean.TestSignal
+import com.allen.androidcommonexample.test.bean.TestSignal
 import com.allen.common.utils.ScreenUtils
 import kotlinx.android.synthetic.main.activity_animator.*
 

@@ -1,4 +1,4 @@
-package com.allen.androidcommonexample.bean
+package com.allen.androidcommonexample.test.bean
 
 import com.allen.common.async.RxBus
 

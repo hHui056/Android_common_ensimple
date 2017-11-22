@@ -6,7 +6,7 @@ import android.util.AttributeSet
 import android.view.Surface
 import android.view.TextureView
 import com.allen.androidcommonexample.R
-import com.allen.androidcommonexample.bean.TestSignal
+import com.allen.androidcommonexample.test.bean.TestSignal
 import com.allen.androidcommonexample.test.util.SignalInsert
 import java.util.concurrent.LinkedBlockingQueue
 

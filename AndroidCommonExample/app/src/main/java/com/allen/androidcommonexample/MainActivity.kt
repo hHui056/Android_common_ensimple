@@ -11,8 +11,8 @@ import com.allen.androidcommonexample.animator.AnimatorActivity
 import com.allen.androidcommonexample.test.ListWithSpinnerActivity
 import com.allen.androidcommonexample.rxbus.SecondActivity
 import com.allen.androidcommonexample.socket.SocketActivity
-import com.allen.androidcommonexample.bean.TestEventType
-import com.allen.androidcommonexample.bean.TestEventTypeOne
+import com.allen.androidcommonexample.test.bean.TestEventType
+import com.allen.androidcommonexample.test.bean.TestEventTypeOne
 import com.allen.androidcommonexample.opengl.OpenGLActivity
 import com.allen.common.async.RxBus
 import com.allen.common.log.Logger

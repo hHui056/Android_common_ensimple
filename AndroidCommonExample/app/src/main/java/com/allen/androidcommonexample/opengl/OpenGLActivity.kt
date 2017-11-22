@@ -12,14 +12,12 @@ import android.os.Bundle
 class OpenGLActivity : Activity() {
 
     private lateinit var glSurfaceView: GLSurfaceView
+
     var rendererSet = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // setContentView(R.layout.activity_open_gl)
-
         initGLSurfaceView()
-
     }
 
     private fun initGLSurfaceView() {
@@ -29,7 +27,7 @@ class OpenGLActivity : Activity() {
 
         if (supportEs2) {
             glSurfaceView.setEGLContextClientVersion(2)
-            glSurfaceView.setRenderer(AirHockeyRenderer(this@OpenGLActivity))
+            glSurfaceView.setRenderer(AirHockeyRendererPlus(this@OpenGLActivity))
             rendererSet = true
         }
         this.setContentView(glSurfaceView)
