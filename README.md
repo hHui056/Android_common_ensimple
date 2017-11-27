@@ -19,10 +19,10 @@
 ### 收集了一些常用插件的使用方法
 - RxJava & RxAndroid
 
-- greenDao
+- greenDao
 
 - RePlugin
  
 ### 一些学习时写的代码
  
-- OpenGL ES
+- OpenGL ES
