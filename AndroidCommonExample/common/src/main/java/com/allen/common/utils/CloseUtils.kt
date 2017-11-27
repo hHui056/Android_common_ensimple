@@ -12,7 +12,8 @@ object CloseUtils {
 
      * @param closeables closeables
      */
-    @JvmStatic fun closeIO(vararg closeables: Closeable) {
+    @JvmStatic
+    fun closeIO(vararg closeables: Closeable) {
         if (closeables == null) return
         for (closeable in closeables) {
             if (closeable != null) {
@@ -21,7 +22,6 @@ object CloseUtils {
                 } catch (e: IOException) {
                     e.printStackTrace()
                 }
-
             }
         }
     }
@@ -31,7 +31,8 @@ object CloseUtils {
 
      * @param closeables closeables
      */
-    @JvmStatic fun closeIOQuietly(vararg closeables: Closeable) {
+    @JvmStatic
+    fun closeIOQuietly(vararg closeables: Closeable) {
         if (closeables == null) return
         for (closeable in closeables) {
             if (closeable != null) {

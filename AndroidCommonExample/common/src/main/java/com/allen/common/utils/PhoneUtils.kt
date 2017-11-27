@@ -27,7 +27,6 @@ class PhoneUtils private constructor() {
     }
 
     companion object {
-
         /**
          * 判断设备是否是手机
 

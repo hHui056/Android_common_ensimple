@@ -4,16 +4,19 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.os.Environment
 import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import android.widget.BaseAdapter
+import android.widget.Button
 import com.allen.androidcommonexample.animator.AnimatorActivity
-import com.allen.androidcommonexample.test.ListWithSpinnerActivity
+import com.allen.androidcommonexample.opengl.OpenGLActivity
 import com.allen.androidcommonexample.rxbus.SecondActivity
 import com.allen.androidcommonexample.socket.SocketActivity
+import com.allen.androidcommonexample.test.ListWithSpinnerActivity
 import com.allen.androidcommonexample.test.bean.TestEventType
 import com.allen.androidcommonexample.test.bean.TestEventTypeOne
-import com.allen.androidcommonexample.opengl.OpenGLActivity
 import com.allen.common.async.RxBus
 import com.allen.common.log.Logger
 import com.allen.common.utils.ToastUtils
@@ -24,31 +27,10 @@ import kotlinx.android.synthetic.main.activity_main.*
 /**
  * @author hHui
  */
-class MainActivity : Activity(), View.OnClickListener {
-
-    override fun onClick(v: View?) {
-        when (v) {
-            btn_to_second -> jumpToOtherActivity(SecondActivity())
-            btn_to_animator -> jumpToOtherActivity(AnimatorActivity())
-            btn_to_socket -> jumpToOtherActivity(SocketActivity())
-            btn_install_plugin -> {  // - 安装插件
-                val filePath = Environment.getExternalStorageDirectory().absolutePath
-                Logger.dft().d(TAG, "根目录路径:  " + filePath)
-                val info = RePlugin.install(filePath + "/hahaha.apk")
-                Logger.dft().d(TAG, "安装结果： " + info)
-            }
-            btn_plugin -> {
-                RePlugin.startActivity(this, RePlugin.createIntent("com.allen.plugin1", "com.allen.plugin1.MainActivity"))
-            }
-            btn_to_sp -> {
-                jumpToOtherActivity(ListWithSpinnerActivity())
-            }
-            btn_opengl -> jumpToOtherActivity(OpenGLActivity())
-        }
-    }
-
-    val TAG = "MainActivity"
-
+class MainActivity : Activity() {
+    var viewHolder: MainItemViewHolder? = null
+    val activitys = arrayOf("RxBus", "Animator", "Socket", "Plugin", "ListUseSpinner", "OpenGL")
+    private val TAG = "MainActivity"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -62,14 +44,7 @@ class MainActivity : Activity(), View.OnClickListener {
                 Logger.dft().d(TAG, "He's name is " + it.player.name + "\nAge is " + it.player.age + "\nProfession " + it.player.like)
             }
         }
-
-        btn_to_second.setOnClickListener(this)
-        btn_to_animator.setOnClickListener(this)
-        btn_to_socket.setOnClickListener(this)
-        btn_plugin.setOnClickListener(this)
-        btn_install_plugin.setOnClickListener(this)
-        btn_to_sp.setOnClickListener(this)
-        btn_opengl.setOnClickListener(this)
+        list.adapter = MainListAdapter()
     }
 
     private fun jumpToOtherActivity(activity: Activity) {
@@ -79,5 +54,50 @@ class MainActivity : Activity(), View.OnClickListener {
     override fun onTrimMemory(level: Int) {
         super.onTrimMemory(level)
         Logger.dft().d(TAG, "onTrimMemory " + level)
+    }
+
+    inner class MainListAdapter : BaseAdapter() {
+        override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+            var convertView = convertView
+            if (convertView == null) {
+                viewHolder = MainItemViewHolder()
+                val inflater = LayoutInflater.from(this@MainActivity)
+                convertView = inflater.inflate(R.layout.item_layout, parent, false)
+                viewHolder?.button = convertView.findViewById(R.id.btn_item) as Button
+                convertView.tag = viewHolder
+            } else {
+                viewHolder = convertView.tag as MainItemViewHolder
+            }
+            viewHolder!!.button!!.text = activitys[position] + ""
+            viewHolder!!.button!!.setOnClickListener {
+                when (position) {
+                    0 -> jumpToOtherActivity(SecondActivity())
+                    1 -> jumpToOtherActivity(AnimatorActivity())
+                    2 -> jumpToOtherActivity(SocketActivity())
+                    3 -> RePlugin.startActivity(this@MainActivity, RePlugin.createIntent("com.allen.plugin1", "com.allen.plugin1.MainActivity"))
+                    4 -> jumpToOtherActivity(ListWithSpinnerActivity())
+                    5 -> jumpToOtherActivity(OpenGLActivity())
+                    else -> {
+                    }
+                }
+            }
+            return convertView!!
+        }
+
+        override fun getItem(position: Int): Any {
+            return activitys[position]
+        }
+
+        override fun getItemId(position: Int): Long {
+            return position.toLong()
+        }
+
+        override fun getCount(): Int {
+            return activitys.size
+        }
+    }
+
+    inner class MainItemViewHolder {
+        internal var button: Button? = null
     }
 }

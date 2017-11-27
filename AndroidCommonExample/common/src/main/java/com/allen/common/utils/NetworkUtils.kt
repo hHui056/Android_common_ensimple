@@ -42,7 +42,8 @@ class NetworkUtils private constructor() {
         /**
          * 打开网络设置界面
          */
-        @JvmStatic fun openWirelessSettings() {
+        @JvmStatic
+        fun openWirelessSettings() {
             Utils.getApp().startActivity(Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
         }
 
@@ -294,7 +295,8 @@ class NetworkUtils private constructor() {
          * *
          * @return IP地址
          */
-        @JvmStatic fun getIPAddress(useIPv4: Boolean): String? {
+        @JvmStatic
+        fun getIPAddress(useIPv4: Boolean): String? {
             try {
                 val nis = NetworkInterface.getNetworkInterfaces()
                 while (nis.hasMoreElements()) {
@@ -334,14 +336,15 @@ class NetworkUtils private constructor() {
          * *
          * @return ip地址
          */
-        @JvmStatic fun getDomainAddress(domain: String): String? {
+        @JvmStatic
+        fun getDomainAddress(domain: String): String? {
             val inetAddress: InetAddress
-            try {
+            return try {
                 inetAddress = InetAddress.getByName(domain)
-                return inetAddress.hostAddress
+                inetAddress.hostAddress
             } catch (e: UnknownHostException) {
                 e.printStackTrace()
-                return null
+                null
             }
 
         }

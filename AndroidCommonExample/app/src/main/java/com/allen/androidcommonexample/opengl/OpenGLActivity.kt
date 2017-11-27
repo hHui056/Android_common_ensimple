@@ -13,7 +13,7 @@ class OpenGLActivity : Activity() {
 
     private lateinit var glSurfaceView: GLSurfaceView
 
-    var rendererSet = false
+    private var rendererSet = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

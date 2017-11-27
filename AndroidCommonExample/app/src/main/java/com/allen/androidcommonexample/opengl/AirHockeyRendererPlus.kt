@@ -1,4 +1,3 @@
-
 package com.allen.androidcommonexample.opengl
 
 import android.content.Context
@@ -32,10 +31,8 @@ class AirHockeyRendererPlus(private val context: Context) : Renderer {
 
         table = Table()
         mallet = Mallet()
-
         textureProgram = TextureShaderProgram(context)
         colorProgram = ColorShaderProgram(context)
-
         texture = TextureHelper.loadTexture(context, R.drawable.air_hockey_surface)
     }
 

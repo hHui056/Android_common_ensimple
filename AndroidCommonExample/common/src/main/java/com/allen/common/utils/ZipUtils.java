@@ -39,8 +39,7 @@ public final class ZipUtils {
      * @return {@code true}: 压缩成功<br>{@code false}: 压缩失败
      * @throws IOException IO错误时抛出
      */
-    public static boolean zipFile(final String resFilePath,
-                                  final String zipFilePath)
+    public static boolean zipFile(final String resFilePath, final String zipFilePath)
             throws IOException {
         return zipFile(resFilePath, zipFilePath, null);
     }
@@ -84,9 +83,7 @@ public final class ZipUtils {
      * @return {@code true}: 压缩成功<br>{@code false}: 压缩失败
      * @throws IOException IO错误时抛出
      */
-    public static boolean zipFile(final File resFile,
-                                  final File zipFile,
-                                  final String comment)
+    public static boolean zipFile(final File resFile, final File zipFile, final String comment)
             throws IOException {
         if (resFile == null || zipFile == null) return false;
         ZipOutputStream zos = null;

@@ -29,10 +29,8 @@ class ToastUtils private constructor() {
     }
 
     companion object {
-
         private val DEFAULT_COLOR = 0xFEFFFFFF.toInt()
         private val HANDLER = Handler(Looper.getMainLooper())
-
         private var sToast: Toast? = null
         private var sViewWeakReference: WeakReference<View>? = null
         private var sLayoutId = -1
@@ -42,7 +40,6 @@ class ToastUtils private constructor() {
         private var bgColor = DEFAULT_COLOR
         private var bgResource = -1
         private var msgColor = DEFAULT_COLOR
-
         /**
          * 设置吐司位置
 
@@ -90,18 +87,14 @@ class ToastUtils private constructor() {
 
          * @param text 文本
          */
-        fun showShortText(text: CharSequence) {
-            show(text, Toast.LENGTH_SHORT)
-        }
+        fun showShortText(text: CharSequence) = show(text, Toast.LENGTH_SHORT)
 
         /**
          * 安全地显示短时吐司
 
          * @param resId 资源Id
          */
-        fun showShortRes(@StringRes resId: Int) {
-            show(resId, Toast.LENGTH_SHORT)
-        }
+        fun showShortRes(@StringRes resId: Int) = show(resId, Toast.LENGTH_SHORT)
 
         /**
          * 安全地显示短时吐司
@@ -110,9 +103,7 @@ class ToastUtils private constructor() {
          * *
          * @param args  参数
          */
-        fun showShortResWithArgs(@StringRes resId: Int, vararg args: Any) {
-            show(resId, Toast.LENGTH_SHORT, *args)
-        }
+        fun showShortResWithArgs(@StringRes resId: Int, vararg args: Any) = show(resId, Toast.LENGTH_SHORT, *args)
 
         /**
          * 安全地显示短时吐司
@@ -121,27 +112,21 @@ class ToastUtils private constructor() {
          * *
          * @param args   参数
          */
-        fun showShort(format: String, vararg args: Any) {
-            show(format, Toast.LENGTH_SHORT, *args)
-        }
+        fun showShort(format: String, vararg args: Any) = show(format, Toast.LENGTH_SHORT, *args)
 
         /**
          * 安全地显示长时吐司
 
          * @param text 文本
          */
-        fun showLongText(text: CharSequence) {
-            show(text, Toast.LENGTH_LONG)
-        }
+        fun showLongText(text: CharSequence) = show(text, Toast.LENGTH_LONG)
 
         /**
          * 安全地显示长时吐司
 
          * @param resId 资源Id
          */
-        fun showLongRes(@StringRes resId: Int) {
-            show(resId, Toast.LENGTH_LONG)
-        }
+        fun showLongRes(@StringRes resId: Int) = show(resId, Toast.LENGTH_LONG)
 
         /**
          * 安全地显示长时吐司
@@ -150,9 +135,7 @@ class ToastUtils private constructor() {
          * *
          * @param args  参数
          */
-        fun showLongWithArgs(@StringRes resId: Int, vararg args: Any) {
-            show(resId, Toast.LENGTH_LONG, *args)
-        }
+        fun showLongWithArgs(@StringRes resId: Int, vararg args: Any) = show(resId, Toast.LENGTH_LONG, *args)
 
         /**
          * 安全地显示长时吐司
@@ -161,9 +144,7 @@ class ToastUtils private constructor() {
          * *
          * @param args   参数
          */
-        fun showLong(format: String, vararg args: Any) {
-            show(format, Toast.LENGTH_LONG, *args)
-        }
+        fun showLong(format: String, vararg args: Any) = show(format, Toast.LENGTH_LONG, *args)
 
         /**
          * 安全地显示短时自定义吐司(注：最外层layout不能设置background，否则不能改变 [Toast] 的宽高)
@@ -193,13 +174,9 @@ class ToastUtils private constructor() {
             }
         }
 
-        private fun show(@StringRes resId: Int, duration: Int) {
-            show(Utils.getApp().resources.getText(resId).toString(), duration)
-        }
+        private fun show(@StringRes resId: Int, duration: Int) = show(Utils.getApp().resources.getText(resId).toString(), duration)
 
-        private fun show(@StringRes resId: Int, duration: Int, vararg args: Any) {
-            show(String.format(Utils.getApp().resources.getString(resId), *args), duration)
-        }
+        private fun show(@StringRes resId: Int, duration: Int, vararg args: Any) = show(String.format(Utils.getApp().resources.getString(resId), *args), duration)
 
         private fun show(format: String, duration: Int, vararg args: Any) {
             show(String.format(format, *args), duration)
@@ -244,9 +221,7 @@ class ToastUtils private constructor() {
             if (sLayoutId == layoutId) {
                 if (sViewWeakReference != null) {
                     val toastView = sViewWeakReference!!.get()
-                    if (toastView != null) {
-                        return toastView
-                    }
+                    if (toastView != null) return toastView
                 }
             }
             val inflate = Utils.getApp().getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater

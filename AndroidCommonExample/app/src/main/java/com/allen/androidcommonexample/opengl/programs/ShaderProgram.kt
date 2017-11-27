@@ -6,7 +6,7 @@ import com.allen.androidcommonexample.opengl.ShaderHelper
 import com.allen.androidcommonexample.opengl.Utils
 
 open class ShaderProgram(context: Context, vertexShaderResourceId: Int, fragmentShaderResourceId: Int) {
-    // Shader program   seven
+    // Shader program
     protected val program: Int = ShaderHelper.buildProgram(Utils.readTextFileFromResource(context, vertexShaderResourceId),
             Utils.readTextFileFromResource(context, fragmentShaderResourceId))
 
@@ -20,10 +20,10 @@ open class ShaderProgram(context: Context, vertexShaderResourceId: Int, fragment
         // Uniform constants
         val U_MATRIX = "u_Matrix"
         val U_TEXTURE_UNIT = "u_TextureUnit"
-
         // Attribute constants
         val A_POSITION = "a_Position"
         val A_COLOR = "a_Color"
         val A_TEXTURE_COORDINATES = "a_TextureCoordinates"
     }
+
 }

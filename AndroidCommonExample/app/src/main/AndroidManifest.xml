@@ -31,7 +31,9 @@
             android:name=".socket.SocketActivity"
             android:label="SocketActivity" />
         <activity android:name=".test.ListWithSpinnerActivity" />
-        <activity android:name=".opengl.OpenGLActivity"></activity>
+        <activity
+            android:name=".opengl.OpenGLActivity"
+            android:label="OpenGL ES" />
     </application>
 
 </manifest>

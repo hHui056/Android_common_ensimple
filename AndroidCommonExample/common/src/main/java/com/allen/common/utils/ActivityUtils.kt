@@ -32,8 +32,9 @@ class ActivityUtils private constructor() {
          * *
          * @return `true`: 是<br></br>`false`: 否
          */
-        @JvmStatic fun isActivityExists(packageName: String,
-                                        className: String): Boolean {
+        @JvmStatic
+        fun isActivityExists(packageName: String,
+                             className: String): Boolean {
             val intent = Intent()
             intent.setClassName(packageName, className)
             return !(Utils.getApp().packageManager.resolveActivity(intent, 0) == null ||
@@ -46,7 +47,8 @@ class ActivityUtils private constructor() {
 
          * @param cls activity类
          */
-        @JvmStatic fun startActivity(cls: Class<*>) {
+        @JvmStatic
+        fun startActivity(cls: Class<*>) {
             val context = Utils.getApp()
             startActivity(context, null, context.packageName, cls.name, null)
         }
@@ -58,8 +60,9 @@ class ActivityUtils private constructor() {
          * *
          * @param options 跳转动画
          */
-        @JvmStatic fun startActivity(cls: Class<*>,
-                                     options: Bundle) {
+        @JvmStatic
+        fun startActivity(cls: Class<*>,
+                          options: Bundle) {
             val context = Utils.getApp()
             startActivity(context, null, context.packageName, cls.name, options)
         }
@@ -71,10 +74,8 @@ class ActivityUtils private constructor() {
          * *
          * @param cls      activity类
          */
-        @JvmStatic fun startActivity(activity: Activity,
-                                     cls: Class<*>) {
-            startActivity(activity, null, activity.packageName, cls.name, null)
-        }
+        @JvmStatic
+        fun startActivity(activity: Activity, cls: Class<*>) = startActivity(activity, null, activity.packageName, cls.name, null)
 
         /**
          * 启动Activity
@@ -85,11 +86,8 @@ class ActivityUtils private constructor() {
          * *
          * @param options  跳转动画
          */
-        @JvmStatic fun startActivity(activity: Activity,
-                                     cls: Class<*>,
-                                     options: Bundle) {
-            startActivity(activity, null, activity.packageName, cls.name, options)
-        }
+        @JvmStatic
+        fun startActivity(activity: Activity, cls: Class<*>, options: Bundle) = startActivity(activity, null, activity.packageName, cls.name, options)
 
         /**
          * 启动Activity
@@ -102,10 +100,8 @@ class ActivityUtils private constructor() {
          * *
          * @param exitAnim  出场动画
          */
-        @JvmStatic fun startActivity(activity: Activity,
-                                     cls: Class<*>,
-                                     @AnimRes enterAnim: Int,
-                                     @AnimRes exitAnim: Int) {
+        @JvmStatic
+        fun startActivity(activity: Activity, cls: Class<*>, @AnimRes enterAnim: Int, @AnimRes exitAnim: Int) {
             startActivity(activity, null, activity.packageName, cls.name, null)
             activity.overridePendingTransition(enterAnim, exitAnim)
         }
@@ -117,8 +113,8 @@ class ActivityUtils private constructor() {
          * *
          * @param cls    activity类
          */
-        @JvmStatic fun startActivity(extras: Bundle,
-                                     cls: Class<*>) {
+        @JvmStatic
+        fun startActivity(extras: Bundle, cls: Class<*>) {
             val context = Utils.getApp()
             startActivity(context, extras, context.packageName, cls.name, null)
         }
@@ -132,9 +128,8 @@ class ActivityUtils private constructor() {
          * *
          * @param options 跳转动画
          */
-        @JvmStatic fun startActivity(extras: Bundle,
-                                     cls: Class<*>,
-                                     options: Bundle) {
+        @JvmStatic
+        fun startActivity(extras: Bundle, cls: Class<*>, options: Bundle) {
             val context = Utils.getApp()
             startActivity(context, extras, context.packageName, cls.name, options)
         }
@@ -148,11 +143,8 @@ class ActivityUtils private constructor() {
          * *
          * @param cls      activity类
          */
-        @JvmStatic fun startActivity(extras: Bundle,
-                                     activity: Activity,
-                                     cls: Class<*>) {
-            startActivity(activity, extras, activity.packageName, cls.name, null)
-        }
+        @JvmStatic
+        fun startActivity(extras: Bundle, activity: Activity, cls: Class<*>) = startActivity(activity, extras, activity.packageName, cls.name, null)
 
         /**
          * 启动Activity
@@ -165,12 +157,8 @@ class ActivityUtils private constructor() {
          * *
          * @param options  跳转动画
          */
-        @JvmStatic fun startActivity(extras: Bundle,
-                                     activity: Activity,
-                                     cls: Class<*>,
-                                     options: Bundle) {
-            startActivity(activity, extras, activity.packageName, cls.name, options)
-        }
+        @JvmStatic
+        fun startActivity(extras: Bundle, activity: Activity, cls: Class<*>, options: Bundle) = startActivity(activity, extras, activity.packageName, cls.name, options)
 
         /**
          * 启动Activity
@@ -185,11 +173,8 @@ class ActivityUtils private constructor() {
          * *
          * @param exitAnim  出场动画
          */
-        @JvmStatic fun startActivity(extras: Bundle,
-                                     activity: Activity,
-                                     cls: Class<*>,
-                                     @AnimRes enterAnim: Int,
-                                     @AnimRes exitAnim: Int) {
+        @JvmStatic
+        fun startActivity(extras: Bundle, activity: Activity, cls: Class<*>, @AnimRes enterAnim: Int, @AnimRes exitAnim: Int) {
             startActivity(activity, extras, activity.packageName, cls.name, null)
             activity.overridePendingTransition(enterAnim, exitAnim)
         }
@@ -201,10 +186,8 @@ class ActivityUtils private constructor() {
          * *
          * @param cls 全类名
          */
-        @JvmStatic fun startActivity(pkg: String,
-                                     cls: String) {
-            startActivity(Utils.getApp(), null, pkg, cls, null)
-        }
+        @JvmStatic
+        fun startActivity(pkg: String, cls: String) = startActivity(Utils.getApp(), null, pkg, cls, null)
 
         /**
          * 启动Activity
@@ -215,11 +198,8 @@ class ActivityUtils private constructor() {
          * *
          * @param options 动画
          */
-        @JvmStatic fun startActivity(pkg: String,
-                                     cls: String,
-                                     options: Bundle) {
-            startActivity(Utils.getApp(), null, pkg, cls, options)
-        }
+        @JvmStatic
+        fun startActivity(pkg: String, cls: String, options: Bundle) = startActivity(Utils.getApp(), null, pkg, cls, options)
 
         /**
          * 启动Activity
@@ -230,11 +210,8 @@ class ActivityUtils private constructor() {
          * *
          * @param cls      全类名
          */
-        @JvmStatic fun startActivity(activity: Activity,
-                                     pkg: String,
-                                     cls: String) {
-            startActivity(activity, null, pkg, cls, null)
-        }
+        @JvmStatic
+        fun startActivity(activity: Activity, pkg: String, cls: String) = startActivity(activity, null, pkg, cls, null)
 
         /**
          * 启动Activity
@@ -247,12 +224,8 @@ class ActivityUtils private constructor() {
          * *
          * @param options  动画
          */
-        @JvmStatic fun startActivity(activity: Activity,
-                                     pkg: String,
-                                     cls: String,
-                                     options: Bundle) {
-            startActivity(activity, null, pkg, cls, options)
-        }
+        @JvmStatic
+        fun startActivity(activity: Activity, pkg: String, cls: String, options: Bundle) = startActivity(activity, null, pkg, cls, options)
 
         /**
          * 启动Activity
@@ -267,11 +240,8 @@ class ActivityUtils private constructor() {
          * *
          * @param exitAnim  出场动画
          */
-        @JvmStatic fun startActivity(activity: Activity,
-                                     pkg: String,
-                                     cls: String,
-                                     @AnimRes enterAnim: Int,
-                                     @AnimRes exitAnim: Int) {
+        @JvmStatic
+        fun startActivity(activity: Activity, pkg: String, cls: String, @AnimRes enterAnim: Int, @AnimRes exitAnim: Int) {
             startActivity(activity, null, pkg, cls, null)
             activity.overridePendingTransition(enterAnim, exitAnim)
         }
@@ -285,9 +255,10 @@ class ActivityUtils private constructor() {
          * *
          * @param cls    全类名
          */
-        @JvmStatic fun startActivity(extras: Bundle,
-                                     pkg: String,
-                                     cls: String) {
+        @JvmStatic
+        fun startActivity(extras: Bundle,
+                          pkg: String,
+                          cls: String) {
             startActivity(Utils.getApp(), extras, pkg, cls, null)
         }
 
@@ -302,10 +273,11 @@ class ActivityUtils private constructor() {
          * *
          * @param options 动画
          */
-        @JvmStatic fun startActivity(extras: Bundle,
-                                     pkg: String,
-                                     cls: String,
-                                     options: Bundle) {
+        @JvmStatic
+        fun startActivity(extras: Bundle,
+                          pkg: String,
+                          cls: String,
+                          options: Bundle) {
             startActivity(Utils.getApp(), extras, pkg, cls, options)
         }
 
@@ -320,10 +292,11 @@ class ActivityUtils private constructor() {
          * *
          * @param cls      全类名
          */
-        @JvmStatic fun startActivity(extras: Bundle,
-                                     activity: Activity,
-                                     pkg: String,
-                                     cls: String) {
+        @JvmStatic
+        fun startActivity(extras: Bundle,
+                          activity: Activity,
+                          pkg: String,
+                          cls: String) {
             startActivity(activity, extras, pkg, cls, null)
         }
 
@@ -340,11 +313,12 @@ class ActivityUtils private constructor() {
          * *
          * @param options  动画
          */
-        @JvmStatic fun startActivity(extras: Bundle,
-                                     activity: Activity,
-                                     pkg: String,
-                                     cls: String,
-                                     options: Bundle) {
+        @JvmStatic
+        fun startActivity(extras: Bundle,
+                          activity: Activity,
+                          pkg: String,
+                          cls: String,
+                          options: Bundle) {
             startActivity(activity, extras, pkg, cls, options)
         }
 
@@ -361,12 +335,13 @@ class ActivityUtils private constructor() {
          * *
          * @param exitAnim  出场动画
          */
-        @JvmStatic fun startActivity(extras: Bundle,
-                                     activity: Activity,
-                                     pkg: String,
-                                     cls: String,
-                                     @AnimRes enterAnim: Int,
-                                     @AnimRes exitAnim: Int) {
+        @JvmStatic
+        fun startActivity(extras: Bundle,
+                          activity: Activity,
+                          pkg: String,
+                          cls: String,
+                          @AnimRes enterAnim: Int,
+                          @AnimRes exitAnim: Int) {
             startActivity(activity, extras, pkg, cls, null)
             activity.overridePendingTransition(enterAnim, exitAnim)
         }
@@ -396,7 +371,8 @@ class ActivityUtils private constructor() {
          * *
          * @return launcher activity
          */
-        @JvmStatic fun getLauncherActivity(packageName: String): String {
+        @JvmStatic
+        fun getLauncherActivity(packageName: String): String {
             val intent = Intent(Intent.ACTION_MAIN, null)
             intent.addCategory(Intent.CATEGORY_LAUNCHER)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -429,7 +405,8 @@ class ActivityUtils private constructor() {
         /**
          * 结束所有activity
          */
-        @JvmStatic fun finishAllActivities() {
+        @JvmStatic
+        fun finishAllActivities() {
             val activityList = Utils.sActivityList
             for (i in activityList.indices.reversed()) {
                 activityList[i].finish()
