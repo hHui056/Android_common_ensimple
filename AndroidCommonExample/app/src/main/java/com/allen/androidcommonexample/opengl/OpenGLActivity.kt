@@ -21,7 +21,7 @@ class OpenGLActivity : Activity() {
     }
 
     private fun initGLSurfaceView() {
-        glSurfaceView = GLSurfaceView(this@OpenGLActivity)
+        //glSurfaceView = GLSurfaceView(this@OpenGLActivity)
         val activityManager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
         val supportEs2 = activityManager.deviceConfigurationInfo.reqGlEsVersion >= 0x20000  //是否支持es2.0
 

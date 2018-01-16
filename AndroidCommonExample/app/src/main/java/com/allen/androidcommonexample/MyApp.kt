@@ -1,9 +1,9 @@
 package com.allen.androidcommonexample
 
 import com.allen.common.log.Logger
-import com.allen.common.utils.DeviceUtils
 import com.allen.common.utils.Utils
 import com.qihoo360.replugin.RePluginApplication
+import com.tencent.bugly.crashreport.CrashReport
 
 /**
  * Created by hHui on 2017/9/9.
@@ -21,7 +21,7 @@ class MyApp : RePluginApplication() {
          */
         Utils.init(this)
 
-        val ss = DeviceUtils.isDeviceRooted
+        CrashReport.initCrashReport(applicationContext, "d750663b0d", false)
 
     }
 }

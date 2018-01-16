@@ -13,11 +13,7 @@ import android.support.v4.util.SimpleArrayMap
 @SuppressLint("ApplySharedPref")
 class SPUtils(spName: String) {
 
-    private val sp: SharedPreferences
-
-    init {
-        sp = Utils.getApp().getSharedPreferences(spName, Context.MODE_PRIVATE)
-    }
+    private val sp: SharedPreferences = Utils.getApp().getSharedPreferences(spName, Context.MODE_PRIVATE)
 
     /**
      * SP中写入String
@@ -29,7 +25,8 @@ class SPUtils(spName: String) {
      * @param isCommit `true`: [SharedPreferences.Editor.commit]<br></br>
      * *                 `false`: [SharedPreferences.Editor.apply]
      */
-    @JvmOverloads fun put(key: String, value: String, isCommit: Boolean = false) {
+    @JvmOverloads
+    fun put(key: String, value: String, isCommit: Boolean = false) {
         if (isCommit) {
             sp.edit().putString(key, value).commit()
         } else {
@@ -46,7 +43,8 @@ class SPUtils(spName: String) {
      * *
      * @return 存在返回对应值，不存在返回默认值`defaultValue`
      */
-    @JvmOverloads fun getString(key: String, defaultValue: String = ""): String {
+    @JvmOverloads
+    fun getString(key: String, defaultValue: String = ""): String {
         return sp.getString(key, defaultValue)
     }
 
@@ -60,7 +58,8 @@ class SPUtils(spName: String) {
      * @param isCommit `true`: [SharedPreferences.Editor.commit]<br></br>
      * *                 `false`: [SharedPreferences.Editor.apply]
      */
-    @JvmOverloads fun put(key: String, value: Int, isCommit: Boolean = false) {
+    @JvmOverloads
+    fun put(key: String, value: Int, isCommit: Boolean = false) {
         if (isCommit) {
             sp.edit().putInt(key, value).commit()
         } else {
@@ -77,7 +76,8 @@ class SPUtils(spName: String) {
      * *
      * @return 存在返回对应值，不存在返回默认值`defaultValue`
      */
-    @JvmOverloads fun getInt(key: String, defaultValue: Int = -1): Int {
+    @JvmOverloads
+    fun getInt(key: String, defaultValue: Int = -1): Int {
         return sp.getInt(key, defaultValue)
     }
 
@@ -91,7 +91,8 @@ class SPUtils(spName: String) {
      * @param isCommit `true`: [SharedPreferences.Editor.commit]<br></br>
      * *                 `false`: [SharedPreferences.Editor.apply]
      */
-    @JvmOverloads fun put(key: String, value: Long, isCommit: Boolean = false) {
+    @JvmOverloads
+    fun put(key: String, value: Long, isCommit: Boolean = false) {
         if (isCommit) {
             sp.edit().putLong(key, value).commit()
         } else {
@@ -108,7 +109,8 @@ class SPUtils(spName: String) {
      * *
      * @return 存在返回对应值，不存在返回默认值`defaultValue`
      */
-    @JvmOverloads fun getLong(key: String, defaultValue: Long = -1L): Long {
+    @JvmOverloads
+    fun getLong(key: String, defaultValue: Long = -1L): Long {
         return sp.getLong(key, defaultValue)
     }
 
@@ -122,7 +124,8 @@ class SPUtils(spName: String) {
      * @param isCommit `true`: [SharedPreferences.Editor.commit]<br></br>
      * *                 `false`: [SharedPreferences.Editor.apply]
      */
-    @JvmOverloads fun put(key: String, value: Float, isCommit: Boolean = false) {
+    @JvmOverloads
+    fun put(key: String, value: Float, isCommit: Boolean = false) {
         if (isCommit) {
             sp.edit().putFloat(key, value).commit()
         } else {
@@ -139,7 +142,8 @@ class SPUtils(spName: String) {
      * *
      * @return 存在返回对应值，不存在返回默认值`defaultValue`
      */
-    @JvmOverloads fun getFloat(key: String, defaultValue: Float = -1f): Float {
+    @JvmOverloads
+    fun getFloat(key: String, defaultValue: Float = -1f): Float {
         return sp.getFloat(key, defaultValue)
     }
 
@@ -153,7 +157,8 @@ class SPUtils(spName: String) {
      * @param isCommit `true`: [SharedPreferences.Editor.commit]<br></br>
      * *                 `false`: [SharedPreferences.Editor.apply]
      */
-    @JvmOverloads fun put(key: String, value: Boolean, isCommit: Boolean = false) {
+    @JvmOverloads
+    fun put(key: String, value: Boolean, isCommit: Boolean = false) {
         if (isCommit) {
             sp.edit().putBoolean(key, value).commit()
         } else {
@@ -170,7 +175,8 @@ class SPUtils(spName: String) {
      * *
      * @return 存在返回对应值，不存在返回默认值`defaultValue`
      */
-    @JvmOverloads fun getBoolean(key: String, defaultValue: Boolean = false): Boolean {
+    @JvmOverloads
+    fun getBoolean(key: String, defaultValue: Boolean = false): Boolean {
         return sp.getBoolean(key, defaultValue)
     }
 
@@ -184,7 +190,8 @@ class SPUtils(spName: String) {
      * @param isCommit `true`: [SharedPreferences.Editor.commit]<br></br>
      * *                 `false`: [SharedPreferences.Editor.apply]
      */
-    @JvmOverloads fun put(key: String, values: Set<String>, isCommit: Boolean = false) {
+    @JvmOverloads
+    fun put(key: String, values: Set<String>, isCommit: Boolean = false) {
         if (isCommit) {
             sp.edit().putStringSet(key, values).commit()
         } else {
@@ -201,7 +208,8 @@ class SPUtils(spName: String) {
      * *
      * @return 存在返回对应值，不存在返回默认值`defaultValue`
      */
-    @JvmOverloads fun getStringSet(key: String, defaultValue: Set<String> = emptySet<String>()): Set<String> {
+    @JvmOverloads
+    fun getStringSet(key: String, defaultValue: Set<String> = emptySet<String>()): Set<String> {
         return sp.getStringSet(key, defaultValue)
     }
 
@@ -232,7 +240,8 @@ class SPUtils(spName: String) {
      * @param isCommit `true`: [SharedPreferences.Editor.commit]<br></br>
      * *                 `false`: [SharedPreferences.Editor.apply]
      */
-    @JvmOverloads fun remove(key: String, isCommit: Boolean = false) {
+    @JvmOverloads
+    fun remove(key: String, isCommit: Boolean = false) {
         if (isCommit) {
             sp.edit().remove(key).commit()
         } else {
@@ -246,7 +255,8 @@ class SPUtils(spName: String) {
      * @param isCommit `true`: [SharedPreferences.Editor.commit]<br></br>
      * *                 `false`: [SharedPreferences.Editor.apply]
      */
-    @JvmOverloads fun clear(isCommit: Boolean = false) {
+    @JvmOverloads
+    fun clear(isCommit: Boolean = false) {
         if (isCommit) {
             sp.edit().clear().commit()
         } else {

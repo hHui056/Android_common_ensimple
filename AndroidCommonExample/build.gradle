@@ -16,6 +16,8 @@ buildscript {
         gsonVersion = '2.8.1'
         frescoVersion = '1.5.0'
         replugin_version = '2.2.0'
+        junit_version = '4.12'
+        constraintlayout_version = '1.0.2'
 
         libDependencies = [
                 rxJava           : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
@@ -27,6 +29,10 @@ buildscript {
                 gson             : "com.google.code.gson:gson:${gsonVersion}",
                 fresco           : "com.facebook.fresco:fresco:${frescoVersion}",
                 replugin :"com.qihoo360.replugin:replugin-host-lib:$replugin_version",
+                crashreport:"com.tencent.bugly:crashreport:latest.release",
+                nativecrashreport:"com.tencent.bugly:nativecrashreport:latest.release",
+                junit:"junit:junit:$junit_version",
+                constraintlayout:"com.android.support.constraint:constraint-layout:$constraintlayout_version"
         ]
     }
     repositories {

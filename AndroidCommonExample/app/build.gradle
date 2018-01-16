@@ -11,6 +11,10 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk {
+            // 设置支持的SO库架构
+            abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+        }
     }
     buildTypes {
         release {
@@ -22,19 +26,21 @@ android {
 apply plugin: 'replugin-host-gradle'
 
 dependencies {
+    testCompile libDependencies.junit
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-
     compile project(':common')
+
+    compile libDependencies.crashreport
+    compile libDependencies.nativecrashreport
     compile libDependencies.kotlin
     compile libDependencies.rxJava
     compile libDependencies.replugin
+    compile libDependencies.constraintlayout
 
     repositories {
         mavenCentral()
     }
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    testCompile 'junit:junit:4.12'
 }

@@ -24,3 +24,6 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 -assumenosideeffects class_specification
+#避免Bugly被混淆
+-dontwarn com.tencent.bugly.**
+-keep public class com.tencent.bugly.**{*;}

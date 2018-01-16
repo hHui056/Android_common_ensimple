@@ -28,7 +28,8 @@ object EncryptUtils {
      * *
      * @return 16进制密文
      */
-    @JvmStatic fun encryptMD2ToString(data: String): String? {
+    @JvmStatic
+    fun encryptMD2ToString(data: String): String? {
         return encryptMD2ToString(data.toByteArray())
     }
 
@@ -39,7 +40,8 @@ object EncryptUtils {
      * *
      * @return 16进制密文
      */
-    @JvmStatic fun encryptMD2ToString(data: ByteArray): String? {
+    @JvmStatic
+    fun encryptMD2ToString(data: ByteArray): String? {
         return bytes2HexString(encryptMD2(data))
     }
 
@@ -50,7 +52,8 @@ object EncryptUtils {
      * *
      * @return 密文字节数组
      */
-    @JvmStatic fun encryptMD2(data: ByteArray): ByteArray? {
+    @JvmStatic
+    fun encryptMD2(data: ByteArray): ByteArray? {
         return hashTemplate(data, "MD2")
     }
 
@@ -61,7 +64,8 @@ object EncryptUtils {
      * *
      * @return 16进制密文
      */
-    @JvmStatic fun encryptMD5ToString(data: String): String? {
+    @JvmStatic
+    fun encryptMD5ToString(data: String): String? {
         return encryptMD5ToString(data.toByteArray())
     }
 
@@ -74,7 +78,8 @@ object EncryptUtils {
      * *
      * @return 16进制加盐密文
      */
-    @JvmStatic fun encryptMD5ToString(data: String, salt: String): String? {
+    @JvmStatic
+    fun encryptMD5ToString(data: String, salt: String): String? {
         return bytes2HexString(encryptMD5((data + salt).toByteArray()))
     }
 
@@ -85,7 +90,8 @@ object EncryptUtils {
      * *
      * @return 16进制密文
      */
-    @JvmStatic fun encryptMD5ToString(data: ByteArray): String? {
+    @JvmStatic
+    fun encryptMD5ToString(data: ByteArray): String? {
         return bytes2HexString(encryptMD5(data))
     }
 
@@ -98,7 +104,8 @@ object EncryptUtils {
      * *
      * @return 16进制加盐密文
      */
-    @JvmStatic fun encryptMD5ToString(data: ByteArray?, salt: ByteArray?): String? {
+    @JvmStatic
+    fun encryptMD5ToString(data: ByteArray?, salt: ByteArray?): String? {
         if (data == null || salt == null) return null
         val dataSalt = ByteArray(data.size + salt.size)
         System.arraycopy(data, 0, dataSalt, 0, data.size)
@@ -113,7 +120,8 @@ object EncryptUtils {
      * *
      * @return 密文字节数组
      */
-    @JvmStatic fun encryptMD5(data: ByteArray): ByteArray? {
+    @JvmStatic
+    fun encryptMD5(data: ByteArray): ByteArray? {
         return hashTemplate(data, "MD5")
     }
 
@@ -124,7 +132,8 @@ object EncryptUtils {
      * *
      * @return 文件的16进制密文
      */
-    @JvmStatic fun encryptMD5File2String(filePath: String): String? {
+    @JvmStatic
+    fun encryptMD5File2String(filePath: String): String? {
         val file = if (isSpace(filePath)) null else File(filePath)
         return encryptMD5File2String(file)
     }
@@ -137,7 +146,8 @@ object EncryptUtils {
      * *
      * @return 文件的MD5校验码
      */
-    @JvmStatic fun encryptMD5File(filePath: String): ByteArray? {
+    @JvmStatic
+    fun encryptMD5File(filePath: String): ByteArray? {
         val file = if (isSpace(filePath)) null else File(filePath)
         return encryptMD5File(file)
     }
@@ -149,7 +159,8 @@ object EncryptUtils {
      * *
      * @return 文件的16进制密文
      */
-    @JvmStatic fun encryptMD5File2String(file: File?): String? {
+    @JvmStatic
+    fun encryptMD5File2String(file: File?): String? {
         return bytes2HexString(encryptMD5File(file))
     }
 
@@ -160,7 +171,8 @@ object EncryptUtils {
      * *
      * @return 文件的MD5校验码
      */
-    @JvmStatic fun encryptMD5File(file: File?): ByteArray? {
+    @JvmStatic
+    fun encryptMD5File(file: File?): ByteArray? {
         if (file == null) return null
         var fis: FileInputStream? = null
         val digestInputStream: DigestInputStream
@@ -192,7 +204,8 @@ object EncryptUtils {
      * *
      * @return 16进制密文
      */
-    @JvmStatic fun encryptSHA1ToString(data: String): String? {
+    @JvmStatic
+    fun encryptSHA1ToString(data: String): String? {
         return encryptSHA1ToString(data.toByteArray())
     }
 
@@ -203,7 +216,8 @@ object EncryptUtils {
      * *
      * @return 16进制密文
      */
-    @JvmStatic fun encryptSHA1ToString(data: ByteArray): String? {
+    @JvmStatic
+    fun encryptSHA1ToString(data: ByteArray): String? {
         return bytes2HexString(encryptSHA1(data))
     }
 
@@ -214,7 +228,8 @@ object EncryptUtils {
      * *
      * @return 密文字节数组
      */
-    @JvmStatic fun encryptSHA1(data: ByteArray): ByteArray? {
+    @JvmStatic
+    fun encryptSHA1(data: ByteArray): ByteArray? {
         return hashTemplate(data, "SHA1")
     }
 
@@ -225,7 +240,8 @@ object EncryptUtils {
      * *
      * @return 16进制密文
      */
-    @JvmStatic fun encryptSHA224ToString(data: String): String? {
+    @JvmStatic
+    fun encryptSHA224ToString(data: String): String? {
         return encryptSHA224ToString(data.toByteArray())
     }
 
@@ -236,7 +252,8 @@ object EncryptUtils {
      * *
      * @return 16进制密文
      */
-    @JvmStatic fun encryptSHA224ToString(data: ByteArray): String? {
+    @JvmStatic
+    private fun encryptSHA224ToString(data: ByteArray): String? {
         return bytes2HexString(encryptSHA224(data))
     }
 
@@ -247,7 +264,8 @@ object EncryptUtils {
      * *
      * @return 密文字节数组
      */
-    @JvmStatic fun encryptSHA224(data: ByteArray): ByteArray? {
+    @JvmStatic
+    fun encryptSHA224(data: ByteArray): ByteArray? {
         return hashTemplate(data, "SHA224")
     }
 
@@ -258,7 +276,8 @@ object EncryptUtils {
      * *
      * @return 16进制密文
      */
-    @JvmStatic fun encryptSHA256ToString(data: String): String? {
+    @JvmStatic
+    fun encryptSHA256ToString(data: String): String? {
         return encryptSHA256ToString(data.toByteArray())
     }
 
@@ -269,7 +288,8 @@ object EncryptUtils {
      * *
      * @return 16进制密文
      */
-    @JvmStatic fun encryptSHA256ToString(data: ByteArray): String? {
+    @JvmStatic
+    fun encryptSHA256ToString(data: ByteArray): String? {
         return bytes2HexString(encryptSHA256(data))
     }
 
@@ -280,7 +300,8 @@ object EncryptUtils {
      * *
      * @return 密文字节数组
      */
-    @JvmStatic fun encryptSHA256(data: ByteArray): ByteArray? {
+    @JvmStatic
+    fun encryptSHA256(data: ByteArray): ByteArray? {
         return hashTemplate(data, "SHA256")
     }
 
@@ -291,7 +312,8 @@ object EncryptUtils {
      * *
      * @return 16进制密文
      */
-    @JvmStatic fun encryptSHA384ToString(data: String): String? {
+    @JvmStatic
+    fun encryptSHA384ToString(data: String): String? {
         return encryptSHA384ToString(data.toByteArray())
     }
 
@@ -302,7 +324,8 @@ object EncryptUtils {
      * *
      * @return 16进制密文
      */
-    @JvmStatic fun encryptSHA384ToString(data: ByteArray): String? {
+    @JvmStatic
+    fun encryptSHA384ToString(data: ByteArray): String? {
         return bytes2HexString(encryptSHA384(data))
     }
 
@@ -313,7 +336,8 @@ object EncryptUtils {
      * *
      * @return 密文字节数组
      */
-    @JvmStatic fun encryptSHA384(data: ByteArray): ByteArray? {
+    @JvmStatic
+    fun encryptSHA384(data: ByteArray): ByteArray? {
         return hashTemplate(data, "SHA384")
     }
 
@@ -324,7 +348,8 @@ object EncryptUtils {
      * *
      * @return 16进制密文
      */
-    @JvmStatic fun encryptSHA512ToString(data: String): String? {
+    @JvmStatic
+    fun encryptSHA512ToString(data: String): String? {
         return encryptSHA512ToString(data.toByteArray())
     }
 
@@ -335,7 +360,8 @@ object EncryptUtils {
      * *
      * @return 16进制密文
      */
-    @JvmStatic fun encryptSHA512ToString(data: ByteArray): String? {
+    @JvmStatic
+    fun encryptSHA512ToString(data: ByteArray): String? {
         return bytes2HexString(encryptSHA512(data))
     }
 
@@ -346,7 +372,8 @@ object EncryptUtils {
      * *
      * @return 密文字节数组
      */
-    @JvmStatic fun encryptSHA512(data: ByteArray): ByteArray? {
+    @JvmStatic
+    fun encryptSHA512(data: ByteArray): ByteArray? {
         return hashTemplate(data, "SHA512")
     }
 
@@ -381,7 +408,8 @@ object EncryptUtils {
      * *
      * @return 16进制密文
      */
-    @JvmStatic fun encryptHmacMD5ToString(data: String, key: String): String? {
+    @JvmStatic
+    fun encryptHmacMD5ToString(data: String, key: String): String? {
         return encryptHmacMD5ToString(data.toByteArray(), key.toByteArray())
     }
 
@@ -394,7 +422,8 @@ object EncryptUtils {
      * *
      * @return 16进制密文
      */
-    @JvmStatic fun encryptHmacMD5ToString(data: ByteArray, key: ByteArray): String? {
+    @JvmStatic
+    fun encryptHmacMD5ToString(data: ByteArray, key: ByteArray): String? {
         return bytes2HexString(encryptHmacMD5(data, key))
     }
 
@@ -407,7 +436,8 @@ object EncryptUtils {
      * *
      * @return 密文字节数组
      */
-    @JvmStatic fun encryptHmacMD5(data: ByteArray, key: ByteArray): ByteArray? {
+    @JvmStatic
+    fun encryptHmacMD5(data: ByteArray, key: ByteArray): ByteArray? {
         return hmacTemplate(data, key, "HmacMD5")
     }
 
@@ -420,7 +450,8 @@ object EncryptUtils {
      * *
      * @return 16进制密文
      */
-    @JvmStatic fun encryptHmacSHA1ToString(data: String, key: String): String? {
+    @JvmStatic
+    fun encryptHmacSHA1ToString(data: String, key: String): String? {
         return encryptHmacSHA1ToString(data.toByteArray(), key.toByteArray())
     }
 
@@ -433,7 +464,8 @@ object EncryptUtils {
      * *
      * @return 16进制密文
      */
-    @JvmStatic fun encryptHmacSHA1ToString(data: ByteArray, key: ByteArray): String? {
+    @JvmStatic
+    fun encryptHmacSHA1ToString(data: ByteArray, key: ByteArray): String? {
         return bytes2HexString(encryptHmacSHA1(data, key))
     }
 
@@ -446,7 +478,8 @@ object EncryptUtils {
      * *
      * @return 密文字节数组
      */
-    @JvmStatic fun encryptHmacSHA1(data: ByteArray, key: ByteArray): ByteArray? {
+    @JvmStatic
+    fun encryptHmacSHA1(data: ByteArray, key: ByteArray): ByteArray? {
         return hmacTemplate(data, key, "HmacSHA1")
     }
 
@@ -459,7 +492,8 @@ object EncryptUtils {
      * *
      * @return 16进制密文
      */
-    @JvmStatic fun encryptHmacSHA224ToString(data: String, key: String): String? {
+    @JvmStatic
+    fun encryptHmacSHA224ToString(data: String, key: String): String? {
         return encryptHmacSHA224ToString(data.toByteArray(), key.toByteArray())
     }
 
@@ -472,7 +506,8 @@ object EncryptUtils {
      * *
      * @return 16进制密文
      */
-    @JvmStatic fun encryptHmacSHA224ToString(data: ByteArray, key: ByteArray): String? {
+    @JvmStatic
+    fun encryptHmacSHA224ToString(data: ByteArray, key: ByteArray): String? {
         return bytes2HexString(encryptHmacSHA224(data, key))
     }
 
@@ -485,7 +520,8 @@ object EncryptUtils {
      * *
      * @return 密文字节数组
      */
-    @JvmStatic fun encryptHmacSHA224(data: ByteArray, key: ByteArray): ByteArray? {
+    @JvmStatic
+    fun encryptHmacSHA224(data: ByteArray, key: ByteArray): ByteArray? {
         return hmacTemplate(data, key, "HmacSHA224")
     }
 
@@ -498,7 +534,8 @@ object EncryptUtils {
      * *
      * @return 16进制密文
      */
-    @JvmStatic fun encryptHmacSHA256ToString(data: String, key: String): String? {
+    @JvmStatic
+    fun encryptHmacSHA256ToString(data: String, key: String): String? {
         return encryptHmacSHA256ToString(data.toByteArray(), key.toByteArray())
     }
 
@@ -511,7 +548,8 @@ object EncryptUtils {
      * *
      * @return 16进制密文
      */
-    @JvmStatic fun encryptHmacSHA256ToString(data: ByteArray, key: ByteArray): String? {
+    @JvmStatic
+    fun encryptHmacSHA256ToString(data: ByteArray, key: ByteArray): String? {
         return bytes2HexString(encryptHmacSHA256(data, key))
     }
 
@@ -524,7 +562,8 @@ object EncryptUtils {
      * *
      * @return 密文字节数组
      */
-    @JvmStatic fun encryptHmacSHA256(data: ByteArray, key: ByteArray): ByteArray? {
+    @JvmStatic
+    fun encryptHmacSHA256(data: ByteArray, key: ByteArray): ByteArray? {
         return hmacTemplate(data, key, "HmacSHA256")
     }
 
@@ -537,7 +576,8 @@ object EncryptUtils {
      * *
      * @return 16进制密文
      */
-    @JvmStatic fun encryptHmacSHA384ToString(data: String, key: String): String? {
+    @JvmStatic
+    fun encryptHmacSHA384ToString(data: String, key: String): String? {
         return encryptHmacSHA384ToString(data.toByteArray(), key.toByteArray())
     }
 
@@ -550,7 +590,8 @@ object EncryptUtils {
      * *
      * @return 16进制密文
      */
-    @JvmStatic fun encryptHmacSHA384ToString(data: ByteArray, key: ByteArray): String? {
+    @JvmStatic
+    fun encryptHmacSHA384ToString(data: ByteArray, key: ByteArray): String? {
         return bytes2HexString(encryptHmacSHA384(data, key))
     }
 
@@ -563,7 +604,8 @@ object EncryptUtils {
      * *
      * @return 密文字节数组
      */
-    @JvmStatic fun encryptHmacSHA384(data: ByteArray, key: ByteArray): ByteArray? {
+    @JvmStatic
+    fun encryptHmacSHA384(data: ByteArray, key: ByteArray): ByteArray? {
         return hmacTemplate(data, key, "HmacSHA384")
     }
 
@@ -576,7 +618,8 @@ object EncryptUtils {
      * *
      * @return 16进制密文
      */
-    @JvmStatic fun encryptHmacSHA512ToString(data: String, key: String): String? {
+    @JvmStatic
+    fun encryptHmacSHA512ToString(data: String, key: String): String? {
         return encryptHmacSHA512ToString(data.toByteArray(), key.toByteArray())
     }
 
@@ -589,7 +632,8 @@ object EncryptUtils {
      * *
      * @return 16进制密文
      */
-    @JvmStatic fun encryptHmacSHA512ToString(data: ByteArray, key: ByteArray): String? {
+    @JvmStatic
+    fun encryptHmacSHA512ToString(data: ByteArray, key: ByteArray): String? {
         return bytes2HexString(encryptHmacSHA512(data, key))
     }
 
@@ -602,7 +646,8 @@ object EncryptUtils {
      * *
      * @return 密文字节数组
      */
-    @JvmStatic fun encryptHmacSHA512(data: ByteArray, key: ByteArray): ByteArray? {
+    @JvmStatic
+    fun encryptHmacSHA512(data: ByteArray, key: ByteArray): ByteArray? {
         return hmacTemplate(data, key, "HmacSHA512")
     }
 
@@ -659,7 +704,8 @@ object EncryptUtils {
      * *
      * @return Base64密文
      */
-    @JvmStatic fun encryptDES2Base64(data: ByteArray, key: ByteArray): ByteArray {
+    @JvmStatic
+    fun encryptDES2Base64(data: ByteArray, key: ByteArray): ByteArray {
         return base64Encode(encryptDES(data, key)!!)
     }
 
@@ -672,7 +718,8 @@ object EncryptUtils {
      * *
      * @return 16进制密文
      */
-    @JvmStatic fun encryptDES2HexString(data: ByteArray, key: ByteArray): String? {
+    @JvmStatic
+    fun encryptDES2HexString(data: ByteArray, key: ByteArray): String? {
         return bytes2HexString(encryptDES(data, key))
     }
 
@@ -685,7 +732,8 @@ object EncryptUtils {
      * *
      * @return 密文
      */
-    @JvmStatic fun encryptDES(data: ByteArray, key: ByteArray): ByteArray? {
+    @JvmStatic
+    fun encryptDES(data: ByteArray, key: ByteArray): ByteArray? {
         return desTemplate(data, key, DES_Algorithm, DES_Transformation, true)
     }
 
@@ -698,7 +746,8 @@ object EncryptUtils {
      * *
      * @return 明文
      */
-    @JvmStatic fun decryptBase64DES(data: ByteArray, key: ByteArray): ByteArray? {
+    @JvmStatic
+    fun decryptBase64DES(data: ByteArray, key: ByteArray): ByteArray? {
         return decryptDES(base64Decode(data), key)
     }
 
@@ -711,7 +760,8 @@ object EncryptUtils {
      * *
      * @return 明文
      */
-    @JvmStatic fun decryptHexStringDES(data: String, key: ByteArray): ByteArray? {
+    @JvmStatic
+    fun decryptHexStringDES(data: String, key: ByteArray): ByteArray? {
         return decryptDES(hexString2Bytes(data)!!, key)
     }
 
@@ -724,7 +774,8 @@ object EncryptUtils {
      * *
      * @return 明文
      */
-    @JvmStatic fun decryptDES(data: ByteArray, key: ByteArray): ByteArray? {
+    @JvmStatic
+    fun decryptDES(data: ByteArray, key: ByteArray): ByteArray? {
         return desTemplate(data, key, DES_Algorithm, DES_Transformation, false)
     }
 
@@ -751,7 +802,8 @@ object EncryptUtils {
      * *
      * @return Base64密文
      */
-    @JvmStatic fun encrypt3DES2Base64(data: ByteArray, key: ByteArray): ByteArray? {
+    @JvmStatic
+    fun encrypt3DES2Base64(data: ByteArray, key: ByteArray): ByteArray? {
         return base64Encode(encrypt3DES(data, key)!!)
     }
 
@@ -764,7 +816,8 @@ object EncryptUtils {
      * *
      * @return 16进制密文
      */
-    @JvmStatic fun encrypt3DES2HexString(data: ByteArray, key: ByteArray): String? {
+    @JvmStatic
+    fun encrypt3DES2HexString(data: ByteArray, key: ByteArray): String? {
         return bytes2HexString(encrypt3DES(data, key))
     }
 
@@ -777,7 +830,8 @@ object EncryptUtils {
      * *
      * @return 密文
      */
-    @JvmStatic fun encrypt3DES(data: ByteArray, key: ByteArray): ByteArray? {
+    @JvmStatic
+    fun encrypt3DES(data: ByteArray, key: ByteArray): ByteArray? {
         return desTemplate(data, key, TripleDES_Algorithm, TripleDES_Transformation, true)
     }
 
@@ -790,7 +844,8 @@ object EncryptUtils {
      * *
      * @return 明文
      */
-    @JvmStatic fun decryptBase64_3DES(data: ByteArray, key: ByteArray): ByteArray? {
+    @JvmStatic
+    fun decryptBase64_3DES(data: ByteArray, key: ByteArray): ByteArray? {
         return decrypt3DES(base64Decode(data), key)
     }
 
@@ -803,7 +858,8 @@ object EncryptUtils {
      * *
      * @return 明文
      */
-    @JvmStatic fun decryptHexString3DES(data: String, key: ByteArray): ByteArray? {
+    @JvmStatic
+    fun decryptHexString3DES(data: String, key: ByteArray): ByteArray? {
         return decrypt3DES(hexString2Bytes(data)!!, key)
     }
 
@@ -816,7 +872,8 @@ object EncryptUtils {
      * *
      * @return 明文
      */
-    @JvmStatic fun decrypt3DES(data: ByteArray, key: ByteArray): ByteArray? {
+    @JvmStatic
+    fun decrypt3DES(data: ByteArray, key: ByteArray): ByteArray? {
         return desTemplate(data, key, TripleDES_Algorithm, TripleDES_Transformation, false)
     }
 
@@ -846,7 +903,8 @@ object EncryptUtils {
      * *
      * @return Base64密文
      */
-    @JvmStatic fun encryptAES2Base64(data: ByteArray, key: ByteArray): ByteArray? {
+    @JvmStatic
+    fun encryptAES2Base64(data: ByteArray, key: ByteArray): ByteArray? {
         return base64Encode(encryptAES(data, key)!!)
     }
 
@@ -859,7 +917,8 @@ object EncryptUtils {
      * *
      * @return 16进制密文
      */
-    @JvmStatic fun encryptAES2HexString(data: ByteArray, key: ByteArray): String? {
+    @JvmStatic
+    fun encryptAES2HexString(data: ByteArray, key: ByteArray): String? {
         return bytes2HexString(encryptAES(data, key))
     }
 
@@ -872,7 +931,8 @@ object EncryptUtils {
      * *
      * @return 密文
      */
-    @JvmStatic fun encryptAES(data: ByteArray, key: ByteArray): ByteArray? {
+    @JvmStatic
+    fun encryptAES(data: ByteArray, key: ByteArray): ByteArray? {
         return desTemplate(data, key, AES_Algorithm, AES_Transformation, true)
     }
 
@@ -885,7 +945,8 @@ object EncryptUtils {
      * *
      * @return 明文
      */
-    @JvmStatic fun decryptBase64AES(data: ByteArray, key: ByteArray): ByteArray? {
+    @JvmStatic
+    fun decryptBase64AES(data: ByteArray, key: ByteArray): ByteArray? {
         return decryptAES(base64Decode(data), key)
     }
 
@@ -898,7 +959,8 @@ object EncryptUtils {
      * *
      * @return 明文
      */
-    @JvmStatic fun decryptHexStringAES(data: String, key: ByteArray): ByteArray? {
+    @JvmStatic
+    fun decryptHexStringAES(data: String, key: ByteArray): ByteArray? {
         return decryptAES(hexString2Bytes(data)!!, key)
     }
 
@@ -911,7 +973,8 @@ object EncryptUtils {
      * *
      * @return 明文
      */
-    @JvmStatic fun decryptAES(data: ByteArray, key: ByteArray): ByteArray? {
+    @JvmStatic
+    fun decryptAES(data: ByteArray, key: ByteArray): ByteArray? {
         return desTemplate(data, key, AES_Algorithm, AES_Transformation, false)
     }
 
@@ -930,7 +993,8 @@ object EncryptUtils {
      * *
      * @return 密文或者明文，适用于DES，3DES，AES
      */
-    @JvmStatic fun desTemplate(data: ByteArray?, key: ByteArray?, algorithm: String, transformation: String, isEncrypt: Boolean): ByteArray? {
+    @JvmStatic
+    fun desTemplate(data: ByteArray?, key: ByteArray?, algorithm: String, transformation: String, isEncrypt: Boolean): ByteArray? {
         if (data == null || data.size == 0 || key == null || key.size == 0) return null
         try {
             val keySpec = SecretKeySpec(key, algorithm)

@@ -29,7 +29,7 @@ import kotlinx.android.synthetic.main.activity_main.*
  */
 class MainActivity : Activity() {
     var viewHolder: MainItemViewHolder? = null
-    val activitys = arrayOf("RxBus", "Animator", "Socket", "Plugin", "ListUseSpinner", "OpenGL")
+    val activitys = arrayOf("RxBus", "Animator", "Socket", "Plugin", "ListUseSpinner", "OpenGL", "Test")
     private val TAG = "MainActivity"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,9 +47,8 @@ class MainActivity : Activity() {
         list.adapter = MainListAdapter()
     }
 
-    private fun jumpToOtherActivity(activity: Activity) {
-        startActivity(Intent(this, activity::class.java))
-    }
+    private fun jumpToOtherActivity(activity: Activity) =
+            startActivity(Intent(this, activity::class.java))
 
     override fun onTrimMemory(level: Int) {
         super.onTrimMemory(level)
@@ -78,6 +77,7 @@ class MainActivity : Activity() {
                     4 -> jumpToOtherActivity(ListWithSpinnerActivity())
                     5 -> jumpToOtherActivity(OpenGLActivity())
                     else -> {
+
                     }
                 }
             }
