@@ -14,6 +14,8 @@ android {
         ndk {
             // 设置支持的SO库架构
             abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+            moduleName "JNISample"
+
         }
     }
     buildTypes {
@@ -22,6 +24,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets { main { jni.srcDirs = ['src/main/jni', 'src/main/jni/'] } }
 }
 apply plugin: 'replugin-host-gradle'
 
@@ -39,8 +42,7 @@ dependencies {
     compile libDependencies.rxJava
     compile libDependencies.replugin
     compile libDependencies.constraintlayout
-
-    repositories {
-        mavenCentral()
-    }
+}
+repositories {
+    mavenCentral()
 }

@@ -34,6 +34,7 @@ class AirHockeyRendererPlus(private val context: Context) : Renderer {
         textureProgram = TextureShaderProgram(context)
         colorProgram = ColorShaderProgram(context)
         texture = TextureHelper.loadTexture(context, R.drawable.air_hockey_surface)
+
     }
 
     override fun onSurfaceChanged(glUnused: GL10, width: Int, height: Int) {
@@ -67,4 +68,5 @@ class AirHockeyRendererPlus(private val context: Context) : Renderer {
         mallet!!.bindData(colorProgram)
         mallet!!.draw()
     }
+
 }

@@ -91,6 +91,7 @@ public class TcpClient {
                     socket = new Socket();
                     //TODO: 4000 端口不应该设置读超时，使用心跳机制
                     socket.setSoTimeout(5 * 1000);
+
                     socket.connect(new InetSocketAddress(ip, port), 5 * 1000);
 
                     if (isServerClosed(socket)) {
@@ -98,7 +99,6 @@ public class TcpClient {
                     }
                     connectState.getAndSet(ConnectState.Connected);
                     outputStream = socket.getOutputStream();
-
                     in = socket.getInputStream();
                     //接收数据这不需要新开线程，由observable的subscribeOn来指定线程
                     while (isConnected()) {
@@ -158,7 +158,6 @@ public class TcpClient {
         if (connectState.get() == ConnectState.Disconnecting) {
             return;
         }
-
         if (disposable.get() != null) {
             disposable.get().dispose();
             disposable.clear();
@@ -169,7 +168,6 @@ public class TcpClient {
             socket.close();
             socket = null;
         }
-
         connectState.getAndSet(ConnectState.Disconnected);
     }
 
@@ -206,7 +204,6 @@ public class TcpClient {
     public static class Builder {
         private String ip;
         private int port;
-
         private int reconnectCount = Integer.MAX_VALUE;
         private int reconnectDelayMillis = 200;
         private int readBufferSize = 1024;
@@ -278,7 +275,7 @@ public class TcpClient {
                 @Override
                 public ObservableSource<?> apply(@NonNull Throwable throwable) throws Exception {
                     if (throwable instanceof ReconnectException && (maxRetries == Integer.MAX_VALUE || retryCount++ < maxRetries)) {
-                      //  Logger.dft().d(LogTag.Utils, "连接异常，将在" + retryDelayMillis + "毫秒后重连！原因：" + throwable.toString());
+                        //  Logger.dft().d(LogTag.Utils, "连接异常，将在" + retryDelayMillis + "毫秒后重连！原因：" + throwable.toString());
                         return Observable.timer(retryDelayMillis, TimeUnit.MILLISECONDS);
                     }
                     // Max retries hit. Just pass the error along.
