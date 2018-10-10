@@ -187,7 +187,7 @@ class ToastUtils private constructor() {
                 cancel()
                 sToast = Toast.makeText(Utils.getApp(), text, duration)
                 // solve the font of toast
-                val tvMessage = sToast!!.view.findViewById(android.R.id.message) as TextView
+                val tvMessage = sToast!!.view.findViewById<TextView>(android.R.id.message)
                 TextViewCompat.setTextAppearance(tvMessage, android.R.style.TextAppearance)
                 tvMessage.setTextColor(msgColor)
                 setBgAndGravity()

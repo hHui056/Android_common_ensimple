@@ -35,8 +35,8 @@ class SpinnerListAdapter(internal var context: Context, internal var list: Array
             viewHolder = ViewHolder()
             val inflater = LayoutInflater.from(context)
             convertView = inflater.inflate(R.layout.spinner_layout, parent, false)
-            viewHolder!!.text = convertView!!.findViewById(R.id.txt_name) as TextView
-            viewHolder!!.spinner = convertView.findViewById(R.id.my_sp) as Spinner
+            viewHolder!!.text = convertView!!.findViewById<TextView>(R.id.txt_name)
+            viewHolder!!.spinner = convertView.findViewById<Spinner>(R.id.my_sp)
 
             convertView.tag = viewHolder
         } else {

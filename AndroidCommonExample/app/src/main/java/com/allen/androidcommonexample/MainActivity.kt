@@ -62,7 +62,7 @@ class MainActivity : Activity() {
                 viewHolder = MainItemViewHolder()
                 val inflater = LayoutInflater.from(this@MainActivity)
                 convertView = inflater.inflate(R.layout.item_layout, parent, false)
-                viewHolder?.button = convertView.findViewById(R.id.btn_item) as Button
+                viewHolder?.button = convertView.findViewById<Button>(R.id.btn_item)
                 convertView.tag = viewHolder
             } else {
                 viewHolder = convertView.tag as MainItemViewHolder

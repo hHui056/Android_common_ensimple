@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion androidCompileSdkVersion
-    buildToolsVersion androidBuildToolsVersion
+    //buildToolsVersion '26.0.1'
     defaultConfig {
         applicationId "com.allen.androidcommonexample"
         minSdkVersion androidMinSdkVersion
@@ -29,13 +29,8 @@ android {
 apply plugin: 'replugin-host-gradle'
 
 dependencies {
-    testCompile libDependencies.junit
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':common')
-
     compile libDependencies.crashreport
     compile libDependencies.nativecrashreport
     compile libDependencies.kotlin

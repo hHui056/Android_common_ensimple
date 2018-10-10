@@ -25,11 +25,5 @@ class SecondActivity : Activity() {
         btn_post_msg_one.setOnClickListener {
             RxBus.default.post(TestEventTypeOne(Player("Ray Allen", 40, "Basketball")))
         }
-
-        val utils = JNIUtils()
-
-        txt_jni.text = utils.wrold
-
-
     }
 }
