@@ -4,24 +4,38 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion androidCompileSdkVersion
     //buildToolsVersion '26.0.1'
+    signingConfigs {
+        releaseConfig {
+            keyAlias 'android'
+            keyPassword 'pj123456'
+            storeFile file('faisv5.jks')
+            storePassword 'pj123456'
+        }
+    }
     defaultConfig {
         applicationId "com.allen.androidcommonexample"
         minSdkVersion androidMinSdkVersion
         targetSdkVersion androidTargetSdkVersion
         versionCode 1
-        versionName "1.0"
+        versionName "1.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        ndk {
-            // 设置支持的SO库架构
-            abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
-            moduleName "JNISample"
-
+        externalNativeBuild {
+            cmake {
+                cppFlags "-std=c++11"
+            }
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
         }
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            signingConfig signingConfigs.releaseConfig
         }
     }
     sourceSets { main { jni.srcDirs = ['src/main/jni', 'src/main/jni/'] } }
@@ -29,6 +43,7 @@ android {
 apply plugin: 'replugin-host-gradle'
 
 dependencies {
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':common')
     compile libDependencies.crashreport

@@ -22,12 +22,12 @@ object FileUtils {
      * @param target 目标文件，如果文件不存在，自动创建；文件存在，覆盖。
      * @return true 操作成功
      */
-    @JvmStatic fun saveFile(input: InputStream, target: File, onError: (Exception) -> Unit = { throw it }): Boolean {
+    @JvmStatic
+    fun saveFile(input: InputStream, target: File, onError: (Exception) -> Unit = { throw it }): Boolean {
         try {
             if (!target.exists()) {
                 target.createNewFile()
             }
-
             val sink = Okio.buffer(Okio.sink(target))
             val source = Okio.buffer(Okio.source(input))
             sink.writeAll(source)
@@ -49,8 +49,10 @@ object FileUtils {
      * @param onError 异常处理
      * @return true 文件或目录删除成功
      */
-    @JvmStatic @JvmOverloads fun deleteFiles(filePath: String, keepRoot: Boolean = false,
-                                             onError: (Exception) -> Unit = { throw  it }): Boolean = with(File(filePath)) {
+    @JvmStatic
+    @JvmOverloads
+    fun deleteFiles(filePath: String, keepRoot: Boolean = false,
+                    onError: (Exception) -> Unit = { throw  it }): Boolean = with(File(filePath)) {
         try {
             val needMkDir = isDirectory && keepRoot
             return@with exists() && deleteRecursively() && (if (needMkDir) mkdir() else true)
@@ -66,7 +68,9 @@ object FileUtils {
      * @param onError 异常处理
      * @return 文件或目录的总字节数，如果文件不存在返回0
      */
-    @JvmStatic @JvmOverloads fun getLength(filePath: String, onError: (Exception) -> Unit = { throw it }): Long {
+    @JvmStatic
+    @JvmOverloads
+    fun getLength(filePath: String, onError: (Exception) -> Unit = { throw it }): Long {
         var totalSize = 0L
         try {
             with(File(filePath)) {
@@ -100,9 +104,11 @@ object FileUtils {
      *  @param onError 异常处理
      * @return true 操作成功
      */
-    @JvmStatic @JvmOverloads fun copyDirectory(srcDirectory: String, destDirectory: String, containSrcRootPath: Boolean = true,
-                                               ignoreList: List<String> = emptyList<String>(),
-                                               onError: (Exception) -> Unit = { throw it }): Boolean {
+    @JvmStatic
+    @JvmOverloads
+    fun copyDirectory(srcDirectory: String, destDirectory: String, containSrcRootPath: Boolean = true,
+                      ignoreList: List<String> = emptyList<String>(),
+                      onError: (Exception) -> Unit = { throw it }): Boolean {
         with(File(srcDirectory)) {
             if (!isDirectory) return false
 
@@ -139,9 +145,11 @@ object FileUtils {
      *  @param onError 异常处理
      * @return true 操作成功
      */
-    @JvmStatic @JvmOverloads fun moveDirectory(srcDirectory: String, destDirectory: String, containSrcRootPath: Boolean = true,
-                                               ignoreList: List<String> = emptyList<String>(),
-                                               onError: (Exception) -> Unit = { throw it }): Boolean {
+    @JvmStatic
+    @JvmOverloads
+    fun moveDirectory(srcDirectory: String, destDirectory: String, containSrcRootPath: Boolean = true,
+                      ignoreList: List<String> = emptyList<String>(),
+                      onError: (Exception) -> Unit = { throw it }): Boolean {
         try {
             return if (copyDirectory(srcDirectory, destDirectory, containSrcRootPath, ignoreList)) deleteFiles(srcDirectory) else false
         } catch (e: Exception) {
@@ -159,7 +167,8 @@ object FileUtils {
      * *
      * @return 文件
      */
-    @JvmStatic fun getFileByPath(filePath: String): File? {
+    @JvmStatic
+    fun getFileByPath(filePath: String): File? {
         return if (isSpace(filePath)) null else File(filePath)
     }
 
@@ -170,7 +179,8 @@ object FileUtils {
      * *
      * @return `true`: 存在<br></br>`false`: 不存在
      */
-    @JvmStatic fun isFileExists(filePath: String): Boolean {
+    @JvmStatic
+    fun isFileExists(filePath: String): Boolean {
         return isFileExists(getFileByPath(filePath))
     }
 
@@ -181,7 +191,8 @@ object FileUtils {
      * *
      * @return `true`: 存在<br></br>`false`: 不存在
      */
-    @JvmStatic fun isFileExists(file: File?): Boolean {
+    @JvmStatic
+    fun isFileExists(file: File?): Boolean {
         return file != null && file.exists()
     }
 
@@ -194,7 +205,8 @@ object FileUtils {
      * *
      * @return `true`: 重命名成功<br></br>`false`: 重命名失败
      */
-    @JvmStatic fun rename(filePath: String, newName: String): Boolean {
+    @JvmStatic
+    fun rename(filePath: String, newName: String): Boolean {
         return rename(getFileByPath(filePath), newName)
     }
 
@@ -207,7 +219,8 @@ object FileUtils {
      * *
      * @return `true`: 重命名成功<br></br>`false`: 重命名失败
      */
-    @JvmStatic fun rename(file: File?, newName: String): Boolean {
+    @JvmStatic
+    fun rename(file: File?, newName: String): Boolean {
         // 文件为空返回false
         if (file == null) return false
         // 文件不存在返回false
@@ -228,7 +241,8 @@ object FileUtils {
      * *
      * @return `true`: 是<br></br>`false`: 否
      */
-    @JvmStatic fun isDir(dirPath: String): Boolean {
+    @JvmStatic
+    fun isDir(dirPath: String): Boolean {
         return isDir(getFileByPath(dirPath))
     }
 
@@ -239,7 +253,8 @@ object FileUtils {
      * *
      * @return `true`: 是<br></br>`false`: 否
      */
-    @JvmStatic fun isDir(file: File?): Boolean {
+    @JvmStatic
+    fun isDir(file: File?): Boolean {
         return file != null && file.exists() && file.isDirectory
     }
 
@@ -250,7 +265,8 @@ object FileUtils {
      * *
      * @return `true`: 是<br></br>`false`: 否
      */
-    @JvmStatic fun isFile(filePath: String): Boolean {
+    @JvmStatic
+    fun isFile(filePath: String): Boolean {
         return isFile(getFileByPath(filePath))
     }
 
@@ -261,7 +277,8 @@ object FileUtils {
      * *
      * @return `true`: 是<br></br>`false`: 否
      */
-    @JvmStatic fun isFile(file: File?): Boolean {
+    @JvmStatic
+    fun isFile(file: File?): Boolean {
         return file != null && file.exists() && file.isFile
     }
 
@@ -272,7 +289,8 @@ object FileUtils {
      * *
      * @return `true`: 存在或创建成功<br></br>`false`: 不存在或创建失败
      */
-    @JvmStatic fun createOrExistsDir(dirPath: String): Boolean {
+    @JvmStatic
+    fun createOrExistsDir(dirPath: String): Boolean {
         return createOrExistsDir(getFileByPath(dirPath))
     }
 
@@ -283,7 +301,8 @@ object FileUtils {
      * *
      * @return `true`: 存在或创建成功<br></br>`false`: 不存在或创建失败
      */
-    @JvmStatic fun createOrExistsDir(file: File?): Boolean {
+    @JvmStatic
+    fun createOrExistsDir(file: File?): Boolean {
         // 如果存在，是目录则返回true，是文件则返回false，不存在则返回是否创建成功
         return file != null && if (file.exists()) file.isDirectory else file.mkdirs()
     }
@@ -295,7 +314,8 @@ object FileUtils {
      * *
      * @return `true`: 存在或创建成功<br></br>`false`: 不存在或创建失败
      */
-    @JvmStatic fun createOrExistsFile(filePath: String): Boolean {
+    @JvmStatic
+    fun createOrExistsFile(filePath: String): Boolean {
         return createOrExistsFile(getFileByPath(filePath))
     }
 
@@ -306,7 +326,8 @@ object FileUtils {
      * *
      * @return `true`: 存在或创建成功<br></br>`false`: 不存在或创建失败
      */
-    @JvmStatic fun createOrExistsFile(file: File?): Boolean {
+    @JvmStatic
+    fun createOrExistsFile(file: File?): Boolean {
         if (file == null) return false
         // 如果存在，是文件则返回true，是目录则返回false
         if (file.exists()) return file.isFile
@@ -327,7 +348,8 @@ object FileUtils {
      * *
      * @return `true`: 创建成功<br></br>`false`: 创建失败
      */
-    @JvmStatic fun createFileByDeleteOldFile(filePath: String): Boolean {
+    @JvmStatic
+    fun createFileByDeleteOldFile(filePath: String): Boolean {
         return createFileByDeleteOldFile(getFileByPath(filePath))
     }
 
@@ -338,7 +360,8 @@ object FileUtils {
      * *
      * @return `true`: 创建成功<br></br>`false`: 创建失败
      */
-    @JvmStatic fun createFileByDeleteOldFile(file: File?): Boolean {
+    @JvmStatic
+    fun createFileByDeleteOldFile(file: File?): Boolean {
         if (file == null) return false
         // 文件存在并且删除失败返回false
         if (file.exists() && !file.delete()) return false
@@ -486,7 +509,8 @@ object FileUtils {
      * *
      * @return `true`: 复制成功<br></br>`false`: 复制失败
      */
-    @JvmStatic fun copyDir(srcDirPath: String, destDirPath: String, listener: OnReplaceListener): Boolean {
+    @JvmStatic
+    fun copyDir(srcDirPath: String, destDirPath: String, listener: OnReplaceListener): Boolean {
         return copyDir(getFileByPath(srcDirPath)!!, getFileByPath(destDirPath)!!, listener)
     }
 
@@ -501,7 +525,8 @@ object FileUtils {
      * *
      * @return `true`: 复制成功<br></br>`false`: 复制失败
      */
-    @JvmStatic fun copyDir(srcDir: File, destDir: File, listener: OnReplaceListener): Boolean {
+    @JvmStatic
+    fun copyDir(srcDir: File, destDir: File, listener: OnReplaceListener): Boolean {
         return copyOrMoveDir(srcDir, destDir, listener, false)
     }
 
@@ -516,7 +541,8 @@ object FileUtils {
      * *
      * @return `true`: 复制成功<br></br>`false`: 复制失败
      */
-    @JvmStatic fun copyFile(srcFilePath: String, destFilePath: String, listener: OnReplaceListener): Boolean {
+    @JvmStatic
+    fun copyFile(srcFilePath: String, destFilePath: String, listener: OnReplaceListener): Boolean {
         return copyFile(getFileByPath(srcFilePath)!!, getFileByPath(destFilePath)!!, listener)
     }
 
@@ -531,7 +557,8 @@ object FileUtils {
      * *
      * @return `true`: 复制成功<br></br>`false`: 复制失败
      */
-    @JvmStatic fun copyFile(srcFile: File, destFile: File, listener: OnReplaceListener): Boolean {
+    @JvmStatic
+    fun copyFile(srcFile: File, destFile: File, listener: OnReplaceListener): Boolean {
         return copyOrMoveFile(srcFile, destFile, listener, false)
     }
 
@@ -546,7 +573,8 @@ object FileUtils {
      * *
      * @return `true`: 移动成功<br></br>`false`: 移动失败
      */
-    @JvmStatic fun moveDirByFilePath(srcDirPath: String, destDirPath: String, listener: OnReplaceListener): Boolean {
+    @JvmStatic
+    fun moveDirByFilePath(srcDirPath: String, destDirPath: String, listener: OnReplaceListener): Boolean {
         return moveDir(getFileByPath(srcDirPath)!!, getFileByPath(destDirPath)!!, listener)
     }
 
@@ -561,7 +589,8 @@ object FileUtils {
      * *
      * @return `true`: 移动成功<br></br>`false`: 移动失败
      */
-    @JvmStatic fun moveDir(srcDir: File, destDir: File, listener: OnReplaceListener): Boolean {
+    @JvmStatic
+    fun moveDir(srcDir: File, destDir: File, listener: OnReplaceListener): Boolean {
         return copyOrMoveDir(srcDir, destDir, listener, true)
     }
 
@@ -576,7 +605,8 @@ object FileUtils {
      * *
      * @return `true`: 移动成功<br></br>`false`: 移动失败
      */
-    @JvmStatic fun moveFile(srcFilePath: String, destFilePath: String, listener: OnReplaceListener): Boolean {
+    @JvmStatic
+    fun moveFile(srcFilePath: String, destFilePath: String, listener: OnReplaceListener): Boolean {
         return moveFile(getFileByPath(srcFilePath)!!, getFileByPath(destFilePath)!!, listener)
     }
 
@@ -591,7 +621,8 @@ object FileUtils {
      * *
      * @return `true`: 移动成功<br></br>`false`: 移动失败
      */
-    @JvmStatic fun moveFile(srcFile: File, destFile: File, listener: OnReplaceListener): Boolean {
+    @JvmStatic
+    fun moveFile(srcFile: File, destFile: File, listener: OnReplaceListener): Boolean {
         return copyOrMoveFile(srcFile, destFile, listener, true)
     }
 
@@ -602,7 +633,8 @@ object FileUtils {
      * *
      * @return `true`: 删除成功<br></br>`false`: 删除失败
      */
-    @JvmStatic fun deleteDir(dirPath: String): Boolean {
+    @JvmStatic
+    fun deleteDir(dirPath: String): Boolean {
         return deleteDir(getFileByPath(dirPath))
     }
 
@@ -613,7 +645,8 @@ object FileUtils {
      * *
      * @return `true`: 删除成功<br></br>`false`: 删除失败
      */
-    @JvmStatic fun deleteDir(dir: File?): Boolean {
+    @JvmStatic
+    fun deleteDir(dir: File?): Boolean {
         if (dir == null) return false
         // 目录不存在返回true
         if (!dir.exists()) return true
@@ -640,7 +673,8 @@ object FileUtils {
      * *
      * @return `true`: 删除成功<br></br>`false`: 删除失败
      */
-    @JvmStatic fun deleteFile(srcFilePath: String): Boolean {
+    @JvmStatic
+    fun deleteFile(srcFilePath: String): Boolean {
         return deleteFile(getFileByPath(srcFilePath))
     }
 
@@ -651,7 +685,8 @@ object FileUtils {
      * *
      * @return `true`: 删除成功<br></br>`false`: 删除失败
      */
-    @JvmStatic fun deleteFile(file: File?): Boolean {
+    @JvmStatic
+    fun deleteFile(file: File?): Boolean {
         return file != null && (!file.exists() || file.isFile && file.delete())
     }
 
@@ -662,7 +697,8 @@ object FileUtils {
      * *
      * @return `true`: 删除成功<br></br>`false`: 删除失败
      */
-    @JvmStatic fun deleteAllInDir(dirPath: String): Boolean {
+    @JvmStatic
+    fun deleteAllInDir(dirPath: String): Boolean {
         return deleteAllInDir(getFileByPath(dirPath)!!)
     }
 
@@ -673,7 +709,8 @@ object FileUtils {
      * *
      * @return `true`: 删除成功<br></br>`false`: 删除失败
      */
-    @JvmStatic fun deleteAllInDir(dir: File): Boolean {
+    @JvmStatic
+    fun deleteAllInDir(dir: File): Boolean {
         return deleteFilesInDirWithFilter(dir, object : FileFilter {
             override fun accept(pathname: File): Boolean {
                 return true
@@ -688,7 +725,8 @@ object FileUtils {
      * *
      * @return `true`: 删除成功<br></br>`false`: 删除失败
      */
-    @JvmStatic fun deleteFilesInDir(dirPath: String): Boolean {
+    @JvmStatic
+    fun deleteFilesInDir(dirPath: String): Boolean {
         return deleteFilesInDir(getFileByPath(dirPath)!!)
     }
 
@@ -699,7 +737,8 @@ object FileUtils {
      * *
      * @return `true`: 删除成功<br></br>`false`: 删除失败
      */
-    @JvmStatic fun deleteFilesInDir(dir: File): Boolean {
+    @JvmStatic
+    fun deleteFilesInDir(dir: File): Boolean {
         return deleteFilesInDirWithFilter(dir, object : FileFilter {
             override fun accept(pathname: File): Boolean {
                 return pathname.isFile
@@ -716,7 +755,8 @@ object FileUtils {
      * *
      * @return `true`: 删除成功<br></br>`false`: 删除失败
      */
-    @JvmStatic fun deleteFilesInDirWithFilter(dirPath: String, filter: FileFilter): Boolean {
+    @JvmStatic
+    fun deleteFilesInDirWithFilter(dirPath: String, filter: FileFilter): Boolean {
         return deleteFilesInDirWithFilter(getFileByPath(dirPath), filter)
     }
 
@@ -729,7 +769,8 @@ object FileUtils {
      * *
      * @return `true`: 删除成功<br></br>`false`: 删除失败
      */
-    @JvmStatic fun deleteFilesInDirWithFilter(dir: File?, filter: FileFilter): Boolean {
+    @JvmStatic
+    fun deleteFilesInDirWithFilter(dir: File?, filter: FileFilter): Boolean {
         if (dir == null) return false
         // 目录不存在返回true
         if (!dir.exists()) return true
@@ -760,7 +801,8 @@ object FileUtils {
      * *
      * @return 文件链表
      */
-    @JvmStatic fun listFilesInDir(dirPath: String): List<File>? {
+    @JvmStatic
+    fun listFilesInDir(dirPath: String): List<File>? {
         return listFilesInDir(dirPath, false)
     }
 
@@ -773,7 +815,8 @@ object FileUtils {
      * *
      * @return 文件链表
      */
-    @JvmStatic fun listFilesInDir(dir: File): List<File>? {
+    @JvmStatic
+    fun listFilesInDir(dir: File): List<File>? {
         return listFilesInDir(dir, false)
     }
 
@@ -786,7 +829,8 @@ object FileUtils {
      * *
      * @return 文件链表
      */
-    @JvmStatic fun listFilesInDir(dirPath: String, isRecursive: Boolean): List<File>? {
+    @JvmStatic
+    fun listFilesInDir(dirPath: String, isRecursive: Boolean): List<File>? {
         return listFilesInDir(getFileByPath(dirPath)!!, isRecursive)
     }
 
@@ -799,7 +843,8 @@ object FileUtils {
      * *
      * @return 文件链表
      */
-    @JvmStatic fun listFilesInDir(dir: File, isRecursive: Boolean): List<File>? {
+    @JvmStatic
+    fun listFilesInDir(dir: File, isRecursive: Boolean): List<File>? {
         return listFilesInDirWithFilter(dir, object : FileFilter {
             override fun accept(pathname: File): Boolean {
                 return true
@@ -818,8 +863,9 @@ object FileUtils {
      * *
      * @return 文件链表
      */
-    @JvmStatic fun listFilesInDirWithFilter(dirPath: String,
-                                            filter: FileFilter): List<File>? {
+    @JvmStatic
+    fun listFilesInDirWithFilter(dirPath: String,
+                                 filter: FileFilter): List<File>? {
         return listFilesInDirWithFilter(getFileByPath(dirPath)!!, filter, false)
     }
 
@@ -834,8 +880,9 @@ object FileUtils {
      * *
      * @return 文件链表
      */
-    @JvmStatic fun listFilesInDirWithFilter(dir: File,
-                                            filter: FileFilter): List<File>? {
+    @JvmStatic
+    fun listFilesInDirWithFilter(dir: File,
+                                 filter: FileFilter): List<File>? {
         return listFilesInDirWithFilter(dir, filter, false)
     }
 
@@ -850,9 +897,10 @@ object FileUtils {
      * *
      * @return 文件链表
      */
-    @JvmStatic fun listFilesInDirWithFilter(dirPath: String,
-                                            filter: FileFilter,
-                                            isRecursive: Boolean): List<File>? {
+    @JvmStatic
+    fun listFilesInDirWithFilter(dirPath: String,
+                                 filter: FileFilter,
+                                 isRecursive: Boolean): List<File>? {
         return listFilesInDirWithFilter(getFileByPath(dirPath)!!, filter, isRecursive)
     }
 
@@ -867,9 +915,10 @@ object FileUtils {
      * *
      * @return 文件链表
      */
-    @JvmStatic fun listFilesInDirWithFilter(dir: File,
-                                            filter: FileFilter,
-                                            isRecursive: Boolean): List<File>? {
+    @JvmStatic
+    fun listFilesInDirWithFilter(dir: File,
+                                 filter: FileFilter,
+                                 isRecursive: Boolean): List<File>? {
         if (!isDir(dir)) return null
         val list = ArrayList<File>()
         val files = dir.listFiles()
@@ -895,7 +944,8 @@ object FileUtils {
      * @return 文件最后修改的毫秒时间戳
      */
 
-    @JvmStatic fun getFileLastModified(filePath: String): Long {
+    @JvmStatic
+    fun getFileLastModified(filePath: String): Long {
         return getFileLastModified(getFileByPath(filePath))
     }
 
@@ -906,7 +956,8 @@ object FileUtils {
      * *
      * @return 文件最后修改的毫秒时间戳
      */
-    @JvmStatic fun getFileLastModified(file: File?): Long {
+    @JvmStatic
+    fun getFileLastModified(file: File?): Long {
         if (file == null) return -1
         return file.lastModified()
     }
@@ -918,7 +969,8 @@ object FileUtils {
      * *
      * @return 文件编码
      */
-    @JvmStatic fun getFileCharsetSimple(filePath: String): String {
+    @JvmStatic
+    fun getFileCharsetSimple(filePath: String): String {
         return getFileCharsetSimple(getFileByPath(filePath)!!)
     }
 
@@ -929,7 +981,8 @@ object FileUtils {
      * *
      * @return 文件编码
      */
-    @JvmStatic fun getFileCharsetSimple(file: File): String {
+    @JvmStatic
+    fun getFileCharsetSimple(file: File): String {
         var p = 0
         var `is`: InputStream? = null
         try {
@@ -955,7 +1008,8 @@ object FileUtils {
      * *
      * @return 文件大小
      */
-    @JvmStatic fun getDirSize(dirPath: String): String {
+    @JvmStatic
+    fun getDirSize(dirPath: String): String {
         return getDirSize(getFileByPath(dirPath)!!)
     }
 
@@ -966,7 +1020,8 @@ object FileUtils {
      * *
      * @return 文件大小
      */
-    @JvmStatic fun getDirSize(dir: File): String {
+    @JvmStatic
+    fun getDirSize(dir: File): String {
         val len = getDirLength(dir)
         return if (len.toInt() == -1) "" else byte2FitMemorySize(len)
     }
@@ -978,7 +1033,8 @@ object FileUtils {
      * *
      * @return 文件大小
      */
-    @JvmStatic fun getFileSize(filePath: String): String {
+    @JvmStatic
+    fun getFileSize(filePath: String): String {
         return getFileSize(getFileByPath(filePath)!!)
     }
 
@@ -989,7 +1045,8 @@ object FileUtils {
      * *
      * @return 文件大小
      */
-    @JvmStatic fun getFileSize(file: File): String {
+    @JvmStatic
+    fun getFileSize(file: File): String {
         val len = getFileLength(file)
         return if (len.toInt() == -1) "" else byte2FitMemorySize(len)
     }
@@ -1001,7 +1058,8 @@ object FileUtils {
      * *
      * @return 目录长度
      */
-    @JvmStatic fun getDirLength(dirPath: String): Long {
+    @JvmStatic
+    fun getDirLength(dirPath: String): Long {
         return getDirLength(getFileByPath(dirPath)!!)
     }
 
@@ -1012,7 +1070,8 @@ object FileUtils {
      * *
      * @return 目录长度
      */
-    @JvmStatic fun getDirLength(dir: File): Long {
+    @JvmStatic
+    fun getDirLength(dir: File): Long {
         if (!isDir(dir)) return -1
         var len: Long = 0
         val files = dir.listFiles()
@@ -1035,7 +1094,8 @@ object FileUtils {
      * *
      * @return 文件长度
      */
-    @JvmStatic fun getFileLength(filePath: String): Long {
+    @JvmStatic
+    fun getFileLength(filePath: String): Long {
         return getFileLength(getFileByPath(filePath)!!)
     }
 
@@ -1046,19 +1106,20 @@ object FileUtils {
      * *
      * @return 文件长度
      */
-    @JvmStatic fun getFileLength(file: File): Long {
+    @JvmStatic
+    fun getFileLength(file: File): Long {
         if (!isFile(file)) return -1
         return file.length()
     }
 
     /**
      * 获取文件的MD5校验码
-
      * @param filePath 文件路径
      * *
      * @return 文件的MD5校验码
      */
-    @JvmStatic fun getFileMD5ToString(filePath: String): String? {
+    @JvmStatic
+    fun getFileMD5ToString(filePath: String): String? {
         val file = if (isSpace(filePath)) null else File(filePath)
         return getFileMD5ToString(file!!)
     }
@@ -1070,7 +1131,8 @@ object FileUtils {
      * *
      * @return 文件的MD5校验码
      */
-    @JvmStatic fun getFileMD5ToString(file: File): String? {
+    @JvmStatic
+    fun getFileMD5ToString(file: File): String? {
         return bytes2HexString(getFileMD5(file))
     }
 
@@ -1081,7 +1143,8 @@ object FileUtils {
      * *
      * @return 文件的MD5校验码
      */
-    @JvmStatic fun getFileMD5(filePath: String): ByteArray {
+    @JvmStatic
+    fun getFileMD5(filePath: String): ByteArray {
         return getFileMD5(getFileByPath(filePath))!!
     }
 
@@ -1092,7 +1155,8 @@ object FileUtils {
      * *
      * @return 文件的MD5校验码
      */
-    @JvmStatic fun getFileMD5(file: File?): ByteArray? {
+    @JvmStatic
+    fun getFileMD5(file: File?): ByteArray? {
         if (file == null) return null
         var dis: DigestInputStream? = null
         try {
@@ -1122,7 +1186,8 @@ object FileUtils {
      * *
      * @return filePath最长目录
      */
-    @JvmStatic fun getDirName(file: File?): String? {
+    @JvmStatic
+    fun getDirName(file: File?): String? {
         if (file == null) return null
         return getDirName(file.path)
     }
@@ -1134,7 +1199,8 @@ object FileUtils {
      * *
      * @return filePath最长目录
      */
-    @JvmStatic fun getDirName(filePath: String): String {
+    @JvmStatic
+    fun getDirName(filePath: String): String {
         if (isSpace(filePath)) return filePath
         val lastSep = filePath.lastIndexOf(File.separator)
         return if (lastSep == -1) "" else filePath.substring(0, lastSep + 1)
@@ -1147,7 +1213,8 @@ object FileUtils {
      * *
      * @return 文件名
      */
-    @JvmStatic fun getFileName(file: File?): String? {
+    @JvmStatic
+    fun getFileName(file: File?): String? {
         if (file == null) return null
         return getFileName(file.path)
     }
@@ -1159,7 +1226,8 @@ object FileUtils {
      * *
      * @return 文件名
      */
-    @JvmStatic fun getFileName(filePath: String): String {
+    @JvmStatic
+    fun getFileName(filePath: String): String {
         if (isSpace(filePath)) return filePath
         val lastSep = filePath.lastIndexOf(File.separator)
         return if (lastSep == -1) filePath else filePath.substring(lastSep + 1)
@@ -1172,7 +1240,8 @@ object FileUtils {
      * *
      * @return 不带拓展名的文件名
      */
-    @JvmStatic fun getFileNameNoExtension(file: File?): String? {
+    @JvmStatic
+    fun getFileNameNoExtension(file: File?): String? {
         if (file == null) return null
         return getFileNameNoExtension(file.path)
     }
@@ -1184,7 +1253,8 @@ object FileUtils {
      * *
      * @return 不带拓展名的文件名
      */
-    @JvmStatic fun getFileNameNoExtension(filePath: String): String {
+    @JvmStatic
+    fun getFileNameNoExtension(filePath: String): String {
         if (isSpace(filePath)) return filePath
         val lastPoi = filePath.lastIndexOf('.')
         val lastSep = filePath.lastIndexOf(File.separator)
@@ -1204,7 +1274,8 @@ object FileUtils {
      * *
      * @return 文件拓展名
      */
-    @JvmStatic fun getFileExtension(file: File?): String? {
+    @JvmStatic
+    fun getFileExtension(file: File?): String? {
         if (file == null) return null
         return getFileExtension(file.path)
     }
@@ -1216,7 +1287,8 @@ object FileUtils {
      * *
      * @return 文件拓展名
      */
-    @JvmStatic fun getFileExtension(filePath: String): String {
+    @JvmStatic
+    fun getFileExtension(filePath: String): String {
         if (isSpace(filePath)) return filePath
         val lastPoi = filePath.lastIndexOf('.')
         val lastSep = filePath.lastIndexOf(File.separator)

@@ -13,8 +13,11 @@ import retrofit2.http.Url
  */
 internal interface IGetMethod {
 
-    @GET fun getResponse(@Url url: String): Observable<ResponseBody>
+    @GET
+    fun getResponse(@Url url: String): Observable<ResponseBody>
 
-    @Streaming @GET fun getFile(@Url url: String): Observable<ResponseBody>
+    @Streaming
+    @GET
+    fun getFile(@Url url: String): Observable<ResponseBody>
 
 }

@@ -22,6 +22,7 @@
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -31,7 +32,7 @@
         <activity
             android:name=".animator.AnimatorActivity"
             android:label="AnimatorActivity"
-            android:screenOrientation="landscape"></activity>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".socket.SocketActivity"
             android:label="SocketActivity" />
@@ -39,6 +40,7 @@
         <activity
             android:name=".opengl.OpenGLActivity"
             android:label="OpenGL ES" />
+        <activity android:name=".bsdiff.BsdiffActivity"></activity>
     </application>
 
 </manifest>

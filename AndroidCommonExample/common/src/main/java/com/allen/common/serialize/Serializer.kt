@@ -10,27 +10,30 @@ import java.io.File
  * Created by hHui on 2017/8/1.
  */
 class Serializer {
+
     companion object {
-
         //region Java api
-
-        @JvmStatic fun <T> fromJsonFile(jsonFilePath: String, type: Class<T>): T {
+        @JvmStatic
+        fun <T> fromJsonFile(jsonFilePath: String, type: Class<T>): T {
             val file = File(jsonFilePath)
             val jsonString: String = Okio.buffer(Okio.source(file)).readString(Charsets.UTF_8)
             return fromJsonString(jsonString, type)
         }
 
-        @JvmStatic fun <T> fromJsonString(jsonStr: String, type: Class<T>): T {
+        @JvmStatic
+        fun <T> fromJsonString(jsonStr: String, type: Class<T>): T {
             return Gson().fromJson(jsonStr, type)
         }
 
-        @JvmStatic fun <T> fromXmlFile(xmlFilePath: String, type: Class<T>): T {
+        @JvmStatic
+        fun <T> fromXmlFile(xmlFilePath: String, type: Class<T>): T {
             val file = File(xmlFilePath)
             val xmlString: String = Okio.buffer(Okio.source(file)).readString(Charsets.UTF_8)
             return fromXmlString(xmlString, type)
         }
 
-        @JvmStatic fun <T> fromXmlString(xmlString: String, type: Class<T>): T {
+        @JvmStatic
+        fun <T> fromXmlString(xmlString: String, type: Class<T>): T {
             val jsonString = Xml2Json.convert(xmlString)
             return fromJsonString(jsonString, type)
         }
@@ -38,11 +41,13 @@ class Serializer {
 
         //region Kotlin api
 
-        @JvmStatic fun <T> toJsonFile(obj: T, targetFilePath: String) {
+        @JvmStatic
+        fun <T> toJsonFile(obj: T, targetFilePath: String) {
             File(targetFilePath).writeText(toJsonString(obj))
         }
 
-        @JvmStatic fun <T> toJsonString(obj: T): String {
+        @JvmStatic
+        fun <T> toJsonString(obj: T): String {
             return Gson().toJson(obj)
         }
 
@@ -62,7 +67,6 @@ class Serializer {
             val jsonString = Xml2Json.convert(xmlString)
             return fromJsonString(jsonString)
         }
-
     }
 }
 

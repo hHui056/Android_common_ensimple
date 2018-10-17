@@ -15,7 +15,7 @@ import java.io.File
 class HttpClientTest {
     @Test
     fun testGetString() {
-        val url: String = "http://ota.xjxueche.com/download/ota/e515-app/update_newer.json"
+        val url = "http://ota.xjxueche.com/download/ota/e515-app/update_newer.json"
 
         HttpClient().getString(url).subscribeOn(Schedulers.newThread()).subscribe {
             object : DisposableObserver<String>() {
@@ -118,25 +118,24 @@ class HttpClientTest {
     fun testPostJson() {
         val url = "http://jx.xjxueche.com/ecs-boot/mobile/autentication/signIn"
 
-        HttpClient().postJson(url, SignRequestBody("26808", "4321"), SignResponseBody::class.java).subscribeOn(Schedulers.newThread()).
-                subscribe {
-                    object : DisposableObserver<SignResponseBody>() {
-                        override fun onComplete() {
+        HttpClient().postJson(url, SignRequestBody("26808", "4321"), SignResponseBody::class.java).subscribeOn(Schedulers.newThread()).subscribe {
+            object : DisposableObserver<SignResponseBody>() {
+                override fun onComplete() {
 
-                        }
-
-                        override fun onError(e: Throwable) {
-
-                        }
-
-                        override fun onNext(t: SignResponseBody) {
-                            Assert.assertNotNull(t)
-                            Assert.assertEquals("200", t.statusCode)
-                            Log.v("test", t.toString())
-                        }
-
-                    }
                 }
+
+                override fun onError(e: Throwable) {
+
+                }
+
+                override fun onNext(t: SignResponseBody) {
+                    Assert.assertNotNull(t)
+                    Assert.assertEquals("200", t.statusCode)
+                    Log.v("test", t.toString())
+                }
+
+            }
+        }
     }
 
 }

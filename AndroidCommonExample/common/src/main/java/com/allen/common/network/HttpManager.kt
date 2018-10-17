@@ -29,7 +29,7 @@ object HttpManager {
         val adapter = RxJava2CallAdapterFactory.create()
         val builder = Retrofit.Builder()
         val retrofit = builder.baseUrl(url).addConverterFactory(converter).addCallAdapterFactory(adapter).build()
-        retrofitCache.put(url, retrofit)
+        retrofitCache[url] = retrofit
 
         return retrofit
     }

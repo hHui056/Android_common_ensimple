@@ -21,6 +21,6 @@ class MyApp : RePluginApplication() {
          */
         Utils.init(this)
 
-        CrashReport.initCrashReport(applicationContext, "d750663b0d", false)
+        //CrashReport.initCrashReport(applicationContext, "d750663b0d", false)
     }
 }

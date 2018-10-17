@@ -3,6 +3,7 @@ package com.allen.common.network
 import com.allen.common.serialize.toJsonString
 import com.allen.common.serialize.toModel
 import com.allen.common.utils.FileUtils
+import io.reactivex.Flowable
 import io.reactivex.Observable
 import okhttp3.MediaType
 import okhttp3.MultipartBody
@@ -34,6 +35,11 @@ class HttpClient {
         }.doOnSubscribe { HttpManager.manage(it) }
     }
 
+    /**
+     * get方式下载文件
+     * @param url 文件下载地址
+     * @param targetFile 保存路径
+     */
     fun getFile(url: String, targetFile: File): Observable<File> {
         val getMethod = HttpManager.createService(iCls = IGetMethod::class.java)
         return getMethod.getFile(url).map {
@@ -44,9 +50,7 @@ class HttpClient {
 
     fun <R> postJsonString(url: String, request: String, typeResponse: Class<R>): Observable<R> {
         val postMethod = HttpManager.createService(iCls = IPostMethod::class.java)
-
         val body: RequestBody = RequestBody.create(MediaType.parse("application/json"), request)
-
         return postMethod.postJson(url, body).map {
             it.string().toModel(typeResponse)
         }.doOnSubscribe { HttpManager.manage(it) }
@@ -54,13 +58,10 @@ class HttpClient {
 
     fun <T, R> postJson(url: String, request: T, typeResponse: Class<R>): Observable<R> {
         val postMethod = HttpManager.createService(iCls = IPostMethod::class.java)
-
         val body: RequestBody = RequestBody.create(MediaType.parse("application/json"), request.toJsonString())
-
         return postMethod.postJson(url, body).map {
             it.string().toModel(typeResponse)
         }.doOnSubscribe { HttpManager.manage(it) }
-
     }
 
     /**

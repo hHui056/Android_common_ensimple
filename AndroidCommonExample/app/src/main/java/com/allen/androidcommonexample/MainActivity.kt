@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Environment
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,8 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.Button
 import com.allen.androidcommonexample.animator.AnimatorActivity
+import com.allen.androidcommonexample.bsdiff.BsdiffActivity
+import com.allen.androidcommonexample.bsdiff.utils.ApkUtils
 import com.allen.androidcommonexample.opengl.OpenGLActivity
 import com.allen.androidcommonexample.rxbus.SecondActivity
 import com.allen.androidcommonexample.socket.SocketActivity
@@ -23,13 +26,16 @@ import com.allen.common.utils.ToastUtils
 import com.qihoo360.replugin.RePlugin
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_main.*
+import java.io.File
 
 /**
  * @author hHui
  */
 class MainActivity : Activity() {
     var viewHolder: MainItemViewHolder? = null
-    val activitys = arrayOf("RxBus", "Animator", "Socket", "Plugin", "ListUseSpinner", "OpenGL", "Test")
+    val sdCardDir = Environment.getExternalStorageDirectory().absolutePath + File.separator
+    val newApkPath = "${sdCardDir}new.apk"
+    val activitys = arrayOf("RxBus", "Animator", "Socket", "Plugin", "ListUseSpinner", "OpenGL", "这是新的", "安装新的apk")
     private val TAG = "MainActivity"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,7 +58,7 @@ class MainActivity : Activity() {
 
     override fun onTrimMemory(level: Int) {
         super.onTrimMemory(level)
-        Logger.dft().d(TAG, "onTrimMemory " + level)
+        Logger.dft().d(TAG, "onTrimMemory $level")
     }
 
     inner class MainListAdapter : BaseAdapter() {
@@ -76,6 +82,12 @@ class MainActivity : Activity() {
                     3 -> RePlugin.startActivity(this@MainActivity, RePlugin.createIntent("com.allen.plugin1", "com.allen.plugin1.MainActivity"))
                     4 -> jumpToOtherActivity(ListWithSpinnerActivity())
                     5 -> jumpToOtherActivity(OpenGLActivity())
+                    6 -> {//差分包
+                        jumpToOtherActivity(BsdiffActivity())
+                    }
+                    7 -> {
+                        ApkUtils.installApk(applicationContext, newApkPath)
+                    }
                     else -> {
 
                     }

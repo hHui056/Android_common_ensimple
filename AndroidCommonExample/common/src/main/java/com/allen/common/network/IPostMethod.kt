@@ -13,12 +13,16 @@ import retrofit2.http.*
  */
 internal interface IPostMethod {
 
-    @POST fun postJson(@Url url: String, @Body body: RequestBody): Observable<ResponseBody>
+    @POST
+    fun postJson(@Url url: String, @Body body: RequestBody): Observable<ResponseBody>
 
-    @FormUrlEncoded @POST fun postForm(@Url url: String,
-                                       @FieldMap() fileds: MutableMap<String, String>): Observable<ResponseBody>
+    @FormUrlEncoded
+    @POST
+    fun postForm(@Url url: String, @FieldMap() fileds: MutableMap<String, String>): Observable<ResponseBody>
 
-    @Multipart @POST fun postMultiPart(@Url url: String, @PartMap() params: MutableMap<String, RequestBody>,
-                                       @Part files: List<MultipartBody.Part>): Observable<ResponseBody>
+    @Multipart
+    @POST
+    fun postMultiPart(@Url url: String, @PartMap() params: MutableMap<String, RequestBody>,
+                      @Part files: List<MultipartBody.Part>): Observable<ResponseBody>
 
 }
